@@ -2,7 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { projects, projectUsers } from "@/db/schema";
 import { authActionClient } from "@/lib/clients/action-client";
 import { createProjectSchema } from "@/schemas/create-project-schema";
 
@@ -21,17 +21,27 @@ export const createProjectAction = authActionClient
       startDate,
       endDate,
     } = parsedInput;
-    const { organizationId, organizationSlug } = ctx;
+    const { organizationId, organizationSlug, session } = ctx;
 
-    await db.insert(projects).values({
+    const [project] = await db
+      .insert(projects)
+      .values({
+        organizationId,
+        clientId,
+        name,
+        description,
+        status,
+        priority,
+        startDate,
+        endDate,
+      })
+      .returning();
+
+    await db.insert(projectUsers).values({
       organizationId,
-      clientId,
-      name,
-      description,
-      status,
-      priority,
-      startDate,
-      endDate,
+      projectId: project.id,
+      userId: session.user.id,
+      role: "Leader",
     });
 
     revalidateTag(`projects-${organizationSlug}`);

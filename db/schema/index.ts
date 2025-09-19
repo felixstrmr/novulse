@@ -3,6 +3,7 @@ export * from "./clients";
 export * from "./invitations";
 export * from "./members";
 export * from "./organizations";
+export * from "./project-users";
 export * from "./projects";
 export * from "./sessions";
 export * from "./users";

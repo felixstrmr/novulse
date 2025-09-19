@@ -10,11 +10,6 @@ import { ProjectsIcon } from "@/components/icons/projects-icon";
 import { SettingsIcon } from "@/components/icons/settings-icon";
 import { TasksIcon } from "@/components/icons/tasks-icon";
 import { buttonVariants } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 export default function DashboardSidebar() {
@@ -63,14 +58,14 @@ export default function DashboardSidebar() {
   ] as NavItemProps[];
 
   return (
-    <aside className="flex flex-col gap-4 rounded-lg bg-background p-4">
+    <aside className="flex w-64 min-w-64 max-w-64 flex-col gap-4 rounded-lg bg-background p-4">
       <Link
         className={buttonVariants({ variant: "default", size: "icon" })}
         href="/dashboard"
       >
         <NovulseIcon className="size-4" />
       </Link>
-      <div className="flex h-full flex-col items-center justify-between">
+      <div className="flex h-full flex-col justify-between">
         <div className="space-y-1">
           {itemsTop.map((item) => (
             <NavItem key={item.name} {...item} />
@@ -95,23 +90,17 @@ type NavItemProps = {
 
 function NavItem(item: NavItemProps) {
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Link
-          className={cn(
-            "flex size-8 items-center justify-center rounded-md",
-            item.isActive
-              ? "bg-muted text-foreground"
-              : "text-muted-foreground hover:bg-muted"
-          )}
-          href={item.href}
-        >
-          <item.icon className="size-4" />
-        </Link>
-      </TooltipTrigger>
-      <TooltipContent side="right">
-        <p>{item.name}</p>
-      </TooltipContent>
-    </Tooltip>
+    <Link
+      className={cn(
+        "flex h-8 items-center gap-2 rounded-md px-2",
+        item.isActive
+          ? "bg-muted text-foreground"
+          : "text-muted-foreground hover:bg-muted"
+      )}
+      href={item.href}
+    >
+      <item.icon className="size-4" />
+      <span className="text-sm">{item.name}</span>
+    </Link>
   );
 }

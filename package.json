@@ -6,8 +6,8 @@
     "dev": "next dev --turbopack -p 80",
     "build": "next build --turbopack",
     "start": "next start -p 80",
-    "check": "bunx ultractite check",
-    "format": "bunx ultractite fix",
+    "check": "bunx ultracite check",
+    "fix": "bunx ultracite fix",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate"
   },

@@ -31,7 +31,7 @@ export default function ProjectsKanbanItem({ project }: Props) {
   return (
     <Link
       className={cn(
-        "flex w-64 min-w-64 max-w-64 flex-col gap-3 rounded-md bg-background p-3 shadow-sm"
+        "flex w-64 min-w-64 max-w-64 flex-col gap-3 rounded-md bg-background p-3 shadow-sm dark:bg-muted/50"
       )}
       href={`/dashboard/projects/${project.id}`}
       ref={setNodeRef}

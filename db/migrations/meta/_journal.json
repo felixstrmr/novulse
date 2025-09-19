@@ -29,6 +29,27 @@
       "when": 1758176224302,
       "tag": "0003_perpetual_stature",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1758262928673,
+      "tag": "0004_wealthy_ender_wiggin",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1758263071070,
+      "tag": "0005_narrow_mulholland_black",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1758263442362,
+      "tag": "0006_soft_absorbing_man",
+      "breakpoints": true
     }
   ]
 }

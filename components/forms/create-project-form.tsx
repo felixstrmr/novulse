@@ -61,7 +61,7 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
       name: "",
       status: defaultStatus || "Not Started",
       priority: undefined,
-      description: undefined,
+      description: "",
       startDate: undefined,
       endDate: undefined,
     },
@@ -89,7 +89,7 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
   return (
     <Form {...form}>
       <form className="space-y-8" onSubmit={form.handleSubmit(execute)}>
-        <div className="space-y-4">
+        <div className="space-y-2">
           <FormField
             control={form.control}
             name="name"
@@ -116,7 +116,7 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
                 <FormControl>
                   <input
                     className="focus:outline-none"
-                    placeholder="Add description..."
+                    placeholder="Add a description..."
                     {...field}
                   />
                 </FormControl>
@@ -136,7 +136,7 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
                   onValueChange={field.onChange}
                 >
                   <FormControl>
-                    <SelectTrigger size="sm">
+                    <SelectTrigger className="bg-muted shadow-none" size="sm">
                       <SelectValue placeholder="Select a status" />
                     </SelectTrigger>
                   </FormControl>
@@ -170,7 +170,7 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
                   onValueChange={field.onChange}
                 >
                   <FormControl>
-                    <SelectTrigger size="sm">
+                    <SelectTrigger className="bg-muted shadow-none" size="sm">
                       <SelectValue placeholder="Priority" />
                     </SelectTrigger>
                   </FormControl>
