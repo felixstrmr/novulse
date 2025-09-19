@@ -38,6 +38,7 @@ export const authActionClient = actionClient.use(async ({ next }) => {
       organizationId: organizations.id,
       organizationSlug: organizations.slug,
       organizationName: organizations.name,
+      organizationMetadata: organizations.metadata,
       memberId: members.id,
       memberRole: members.role,
     })
@@ -57,6 +58,7 @@ export const authActionClient = actionClient.use(async ({ next }) => {
       organizationId: member[0].organizationId,
       organizationSlug: member[0].organizationSlug,
       organizationName: member[0].organizationName,
+      organizationMetadata: member[0].organizationMetadata,
       memberId: member[0].memberId,
       memberRole: member[0].memberRole,
     },

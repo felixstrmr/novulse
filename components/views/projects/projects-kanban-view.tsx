@@ -59,7 +59,7 @@ export default function ProjectsKanbanView({ projects }: Props) {
 
   return (
     <DndContext id={id} onDragEnd={handleDragEnd} sensors={sensors}>
-      <div className="flex size-full gap-4 p-4">
+      <div className="flex size-full gap-2 p-4">
         {PROJECT_STATUSES.map((status) => (
           <ProjectsKanbanColumn
             key={status}

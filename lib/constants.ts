@@ -13,3 +13,10 @@ export const PROJECT_STATUSES = [
 ] as const;
 
 export const PROJECT_PRIORITIES = ["Low", "Medium", "High"] as const;
+
+export const TASK_STATUSES = [
+  "Not Started",
+  "In Progress",
+  "Ready for Review",
+  "Completed",
+] as const;

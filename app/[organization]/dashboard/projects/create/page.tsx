@@ -38,7 +38,7 @@ export default async function Page({ params, searchParams }: Props) {
         <ChevronLeftIcon className="size-3.5" />
         <span className="text-sm">Back</span>
       </Link>
-      <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-12">
+      <div className="mx-auto flex w-full max-w-2xl flex-col gap-8 py-24">
         <CreateProjectForm
           clients={data}
           defaultStatus={defaultStatus as (typeof PROJECT_STATUSES)[number]}

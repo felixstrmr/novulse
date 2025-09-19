@@ -6,5 +6,6 @@ export * from "./organizations";
 export * from "./project-users";
 export * from "./projects";
 export * from "./sessions";
+export * from "./tasks";
 export * from "./users";
 export * from "./verifications";

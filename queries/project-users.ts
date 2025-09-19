@@ -9,6 +9,7 @@ export const getProjectUsersByProjectId = cache(
       .select({
         userId: projectUsers.userId,
         userName: users.name,
+        userImage: users.image,
         role: projectUsers.role,
       })
       .from(projectUsers)

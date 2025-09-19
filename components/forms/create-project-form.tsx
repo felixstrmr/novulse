@@ -1,7 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check } from "lucide-react";
+import { format } from "date-fns";
+import { ArrowRightIcon, Check } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import React from "react";
@@ -12,6 +13,7 @@ import { createProjectAction } from "@/actions/create-project-action";
 import ProjectPriorityIcon from "@/components/icons/dynamic/project-priority-icon";
 import ProjectStatusIcon from "@/components/icons/dynamic/project-status-icon";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Command,
   CommandEmpty,
@@ -53,6 +55,8 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
   const router = useRouter();
 
   const [clientPopoverOpen, setClientPopoverOpen] = React.useState(false);
+  const [startDatePopoverOpen, setStartDatePopoverOpen] = React.useState(false);
+  const [endDatePopoverOpen, setEndDatePopoverOpen] = React.useState(false);
 
   const form = useForm<z.infer<typeof createProjectSchema>>({
     resolver: zodResolver(createProjectSchema),
@@ -78,11 +82,11 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
         id: "create-project-form",
       });
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       toast.success("Project created", {
         id: "create-project-form",
       });
-      router.push("/dashboard/projects");
+      router.push(`/dashboard/projects/${data.id}`);
     },
   });
 
@@ -259,6 +263,97 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
               </FormItem>
             )}
           />
+          <div className="flex items-center gap-2">
+            <FormField
+              control={form.control}
+              name="startDate"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <Popover
+                    onOpenChange={setStartDatePopoverOpen}
+                    open={startDatePopoverOpen}
+                  >
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <button
+                          className={cn(
+                            "h-7 cursor-pointer rounded-md bg-input/30 px-2 text-xs hover:bg-input/50",
+                            !field.value && "text-muted-foreground"
+                          )}
+                          type="button"
+                        >
+                          {field.value ? (
+                            format(field.value, "PP")
+                          ) : (
+                            <span>Start date</span>
+                          )}
+                        </button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent align="start" className="w-auto p-0">
+                      <Calendar
+                        captionLayout="label"
+                        mode="single"
+                        onSelect={(date) => {
+                          field.onChange(date);
+                          setStartDatePopoverOpen(false);
+                        }}
+                        selected={field.value}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <ArrowRightIcon className="size-3.5" />
+            <FormField
+              control={form.control}
+              name="endDate"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <Popover
+                    onOpenChange={setEndDatePopoverOpen}
+                    open={endDatePopoverOpen}
+                  >
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <button
+                          className={cn(
+                            "h-7 cursor-pointer rounded-md bg-input/30 px-2 text-xs hover:bg-input/50",
+                            !field.value && "text-muted-foreground"
+                          )}
+                          type="button"
+                        >
+                          {field.value ? (
+                            format(field.value, "PP")
+                          ) : (
+                            <span>End date</span>
+                          )}
+                        </button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      align="start"
+                      className="w-auto p-0"
+                      onCloseAutoFocus={(e) => e.preventDefault()}
+                    >
+                      <Calendar
+                        captionLayout="label"
+                        mode="single"
+                        onSelect={(date) => {
+                          field.onChange(date);
+                          setEndDatePopoverOpen(false);
+                        }}
+                        selected={field.value}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
         <div className="flex justify-end">
           <Button isLoading={isExecuting}>Create project</Button>

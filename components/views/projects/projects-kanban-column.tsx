@@ -14,7 +14,7 @@ type Props = {
 };
 
 export default function ProjectsKanbanColumn({ status, projects }: Props) {
-  const { isOver, setNodeRef } = useDroppable({
+  const { setNodeRef, isOver } = useDroppable({
     id: status,
     data: {
       status,
@@ -35,8 +35,8 @@ export default function ProjectsKanbanColumn({ status, projects }: Props) {
       </div>
       <div
         className={cn(
-          "group h-full space-y-2 rounded-lg bg-muted p-2 dark:bg-muted/12.5",
-          isOver && "bg-foreground/10 dark:bg-muted/25"
+          "group h-full space-y-2 rounded-lg bg-muted p-2 dark:bg-muted/25",
+          isOver && "bg-muted/50"
         )}
       >
         {projects.map((project) => (

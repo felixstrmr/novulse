@@ -8,7 +8,6 @@ import { FilesIcon } from "@/components/icons/files-icon";
 import { NovulseIcon } from "@/components/icons/novulse-icon";
 import { ProjectsIcon } from "@/components/icons/projects-icon";
 import { SettingsIcon } from "@/components/icons/settings-icon";
-import { TasksIcon } from "@/components/icons/tasks-icon";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -35,12 +34,6 @@ export default function DashboardSidebar() {
       isActive: segment === "projects",
     },
     {
-      name: "Tasks",
-      href: "/dashboard/tasks",
-      icon: TasksIcon,
-      isActive: segment === "tasks",
-    },
-    {
       name: "Files",
       href: "/dashboard/files",
       icon: FilesIcon,
@@ -58,7 +51,7 @@ export default function DashboardSidebar() {
   ] as NavItemProps[];
 
   return (
-    <aside className="flex w-64 min-w-64 max-w-64 flex-col gap-4 rounded-lg bg-background p-4">
+    <aside className="flex flex-col gap-4 rounded-lg bg-background p-4">
       <Link
         className={buttonVariants({ variant: "default", size: "icon" })}
         href="/dashboard"
@@ -92,7 +85,7 @@ function NavItem(item: NavItemProps) {
   return (
     <Link
       className={cn(
-        "flex h-8 items-center gap-2 rounded-md px-2",
+        "flex size-8 items-center gap-2 rounded-md px-2",
         item.isActive
           ? "bg-muted text-foreground"
           : "text-muted-foreground hover:bg-muted"
@@ -100,7 +93,6 @@ function NavItem(item: NavItemProps) {
       href={item.href}
     >
       <item.icon className="size-4" />
-      <span className="text-sm">{item.name}</span>
     </Link>
   );
 }

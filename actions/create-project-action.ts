@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { projects, projectUsers } from "@/db/schema";
 import { authActionClient } from "@/lib/clients/action-client";
@@ -21,7 +21,7 @@ export const createProjectAction = authActionClient
       startDate,
       endDate,
     } = parsedInput;
-    const { organizationId, organizationSlug, session } = ctx;
+    const { organizationId, session } = ctx;
 
     const [project] = await db
       .insert(projects)
@@ -44,5 +44,7 @@ export const createProjectAction = authActionClient
       role: "Lead",
     });
 
-    revalidateTag(`projects-${organizationSlug}`);
+    revalidatePath("/dashboard/projects");
+
+    return project;
   });

@@ -13,16 +13,20 @@ type Props = {
 export default function ProjectStatusIcon({ status, className }: Props) {
   const Icon = {
     "Not Started": CircleBoltIcon,
+    Planned: CircleBoltIcon,
     "In Progress": CirclePlayIcon,
     "On Hold": CirclePauseIcon,
     Completed: CircleCheckIcon,
+    Cancelled: CircleCheckIcon,
   }[status];
 
   const color = {
     "Not Started": "text-foreground",
+    Planned: "text-yellow-500",
     "In Progress": "text-blue-500",
     "On Hold": "text-yellow-500",
     Completed: "text-green-500",
+    Cancelled: "text-red-500",
   }[status];
 
   return <Icon className={cn("size-4", color, className)} />;
