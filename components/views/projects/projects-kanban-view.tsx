@@ -10,7 +10,7 @@ import {
 import { useOptimisticAction } from "next-safe-action/hooks";
 import React from "react";
 import { updateProjectAction } from "@/actions/update-project-action";
-import ProjectsKanbanColumn from "@/components/views/projects-kanban-column";
+import ProjectsKanbanColumn from "@/components/views/projects/projects-kanban-column";
 import { PROJECT_STATUSES } from "@/lib/constants";
 import type { Project } from "@/types";
 

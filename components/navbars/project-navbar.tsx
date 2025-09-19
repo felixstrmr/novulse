@@ -25,7 +25,7 @@ export default function ProjectNavbar({ projectId }: Props) {
   ];
 
   return (
-    <nav className="mb-8 flex gap-1 border-b">
+    <nav className="flex gap-1 border-b">
       {items.map((item) => (
         <NavItem key={item.name} {...item} />
       ))}

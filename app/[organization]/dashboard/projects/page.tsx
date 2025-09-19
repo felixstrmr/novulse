@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
-import ProjectsKanbanView from "@/components/views/projects-kanban-view";
+import ProjectsKanbanView from "@/components/views/projects/projects-kanban-view";
 import { extractDomain } from "@/lib/utils";
 import { getProjects } from "@/queries/projects";
 

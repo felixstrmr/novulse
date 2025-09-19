@@ -3,7 +3,7 @@
 import { useDroppable } from "@dnd-kit/core";
 import ProjectStatusIcon from "@/components/icons/dynamic/project-status-icon";
 import { Badge } from "@/components/ui/badge";
-import ProjectsKanbanItem from "@/components/views/projects-kanban-item";
+import ProjectsKanbanItem from "@/components/views/projects/projects-kanban-item";
 import type { PROJECT_STATUSES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import type { Project } from "@/types";
