@@ -18,15 +18,15 @@ import {
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  clients: TData[];
 };
 
 export function ClientsTable<TData, TValue>({
   columns,
-  data,
+  clients,
 }: DataTableProps<TData, TValue>) {
   const table = useReactTable({
-    data,
+    data: clients,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

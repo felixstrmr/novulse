@@ -2,10 +2,7 @@ import { relations } from "drizzle-orm";
 import { pgEnum, pgTable, timestamp, uuid } from "drizzle-orm/pg-core";
 import { organizations, projects, users } from "@/db/schema";
 
-export const projectUserRole = pgEnum("project_user_role", [
-  "Member",
-  "Leader",
-]);
+export const projectUserRole = pgEnum("project_user_role", ["Member", "Lead"]);
 
 export const projectUsers = pgTable("project_users", {
   id: uuid("id").primaryKey().defaultRandom(),

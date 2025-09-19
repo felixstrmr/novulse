@@ -41,7 +41,7 @@ export const createProjectAction = authActionClient
       organizationId,
       projectId: project.id,
       userId: session.user.id,
-      role: "Leader",
+      role: "Lead",
     });
 
     revalidateTag(`projects-${organizationSlug}`);

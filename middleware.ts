@@ -1,11 +1,10 @@
-import { headers } from "next/headers";
 import type { NextRequest } from "next/server";
-import { auth } from "@/lib/auth";
 import { env } from "@/lib/env";
 import ApiMiddleware from "@/lib/middlewares/api-middleware";
 import AppMiddleware from "@/lib/middlewares/app-middleware";
 import HomeMiddleware from "@/lib/middlewares/home-middleware";
 import OrganizationMiddleware from "@/lib/middlewares/organization-middleware";
+import { getSession } from "@/queries/sessions";
 
 export async function middleware(request: NextRequest) {
   const hostname = request.headers.get("host");
@@ -18,9 +17,7 @@ export async function middleware(request: NextRequest) {
     return ApiMiddleware(request);
   }
 
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const session = await getSession();
 
   if (hostname === `app.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
     return AppMiddleware(request, session);

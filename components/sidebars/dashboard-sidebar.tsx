@@ -63,7 +63,7 @@ export default function DashboardSidebar() {
         className={buttonVariants({ variant: "default", size: "icon" })}
         href="/dashboard"
       >
-        <NovulseIcon className="size-4" />
+        <NovulseIcon />
       </Link>
       <div className="flex h-full flex-col justify-between">
         <div className="space-y-1">
