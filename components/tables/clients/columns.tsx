@@ -1,7 +1,8 @@
 "use client";
 
 import type { ColumnDef } from "@tanstack/react-table";
-import Avvvatars from "avvvatars-react";
+import Link from "next/link";
+import Avatar from "@/components/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
@@ -53,11 +54,11 @@ export const clientColumns: ColumnDef<Client>[] = [
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
-      const { name } = row.original;
+      const { name, image } = row.original;
 
       return (
         <div className="flex items-center gap-2">
-          <Avvvatars radius={6} size={24} style="shape" value={name} />
+          <Avatar image={image} size="sm" value={name} />
           <span className="text-sm">{name}</span>
         </div>
       );
@@ -69,7 +70,17 @@ export const clientColumns: ColumnDef<Client>[] = [
     cell: ({ row }) => {
       const { website } = row.original;
 
-      return website ? website : "-";
+      const formattedWebsite = website
+        ?.replace("https://", "")
+        .replace("http://", "");
+
+      return website ? (
+        <Link className="hover:underline" href={website} target="_blank">
+          {formattedWebsite}
+        </Link>
+      ) : (
+        "-"
+      );
     },
   },
 ];

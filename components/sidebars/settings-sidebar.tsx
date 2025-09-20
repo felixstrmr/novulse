@@ -1,16 +1,12 @@
 "use client";
 
-import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import { useSelectedLayoutSegment } from "next/navigation";
 import { OrganizationSettingsIcon } from "@/components/icons/organization-settings-icon";
 import { ProfileSettingsIcon } from "@/components/icons/profile-settings-icon";
-import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function SettingsSidebar() {
-  const router = useRouter();
-
   const segment = useSelectedLayoutSegment();
 
   const itemsPersonal = [
@@ -33,18 +29,8 @@ export default function SettingsSidebar() {
 
   return (
     <aside className="flex w-64 min-w-64 max-w-64 flex-col rounded-lg bg-background">
-      <div className="group flex items-center gap-2 border-b p-4">
-        <button
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "-translate-x-4 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
-          )}
-          onClick={() => router.back()}
-          type="button"
-        >
-          <ArrowLeftIcon className="size-4" />
-        </button>
-        <h1 className="-translate-x-8 flex h-8 items-center font-semibold text-2xl tracking-tight transition-transform group-hover:translate-x-0">
+      <div className="flex items-center gap-2 border-b p-4">
+        <h1 className="flex h-8 items-center font-semibold text-2xl tracking-tight">
           Settings
         </h1>
       </div>

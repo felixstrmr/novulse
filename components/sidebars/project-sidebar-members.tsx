@@ -17,9 +17,10 @@ export default function ProjectSidebarMembers({ projectUsers }: Props) {
             className="flex items-center gap-2 rounded-lg p-2 hover:bg-muted"
             key={user.userId}
           >
-            <Avatar image={user.userImage} size="sm" value={user.userName} />
+            <Avatar image={user.userImage} size="xs" value={user.userName} />
             <p className="text-sm">{user.userName}</p>
-            <p className="text-muted-foreground text-xs">{user.role}</p>
+            <p className="text-muted-foreground text-sm">•</p>
+            <p className="text-muted-foreground text-sm">{user.role}</p>
           </div>
         ))}
       </div>

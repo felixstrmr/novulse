@@ -1,4 +1,6 @@
 import Link from "next/link";
+import EmptyState from "@/components/empty-state";
+import { ProjectIcon } from "@/components/icons/project-icon";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import ProjectsKanbanView from "@/components/views/projects/projects-kanban-view";
@@ -29,7 +31,25 @@ export default async function Page({ params }: Props) {
           Create project
         </Link>
       </div>
-      <ProjectsKanbanView projects={projects} />
+      {projects.length > 0 ? (
+        <ProjectsKanbanView projects={projects} />
+      ) : (
+        <div className="flex size-full items-center justify-center">
+          <EmptyState
+            button={
+              <Link
+                className={buttonVariants({ variant: "default" })}
+                href="/dashboard/projects/create"
+              >
+                Create project
+              </Link>
+            }
+            description="Create a project to get started"
+            icon={ProjectIcon}
+            title="No projects found"
+          />
+        </div>
+      )}
     </div>
   );
 }

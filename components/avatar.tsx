@@ -8,13 +8,14 @@ import { cn } from "@/lib/utils";
 type Props = {
   value: string;
   image?: string | null;
-  size: "default" | "sm" | "lg";
+  size: "xs" | "sm" | "default" | "lg";
 };
 
 export default function Avatar({ value, image, size = "default" }: Props) {
   const sizeClass = {
-    default: "size-8 text-sm rounded-md",
+    xs: "size-6 text-xs rounded-md",
     sm: "size-7 text-xs rounded-md",
+    default: "size-8 text-sm rounded-md",
     lg: "size-9 text-sm rounded-md",
   }[size];
 
