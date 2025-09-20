@@ -65,7 +65,7 @@ export default function CreateProjectForm({ defaultStatus, clients }: Props) {
       name: "",
       status: defaultStatus || "Not Started",
       priority: undefined,
-      description: "",
+      description: undefined,
       startDate: undefined,
       endDate: undefined,
     },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useDraggable } from "@dnd-kit/core";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, isPast } from "date-fns";
 import Link from "next/link";
 import { ClientIcon } from "@/components/icons/client-icon";
 import { ClockIcon } from "@/components/icons/clock-icon";
@@ -53,7 +53,14 @@ export default function ProjectsKanbanItem({ project }: Props) {
         <p className="text-sm">{project.name}</p>
       </div>
       <div className="flex gap-3">
-        <div className="flex w-fit items-center gap-1 rounded-full bg-muted px-1 py-0.5 pr-1.5 text-muted-foreground">
+        <div
+          className={cn(
+            "flex w-fit items-center gap-1 rounded-full bg-muted px-1 py-0.5 pr-1.5",
+            project.endDate && isPast(project.endDate)
+              ? "text-red-500"
+              : "text-muted-foreground"
+          )}
+        >
           <ClockIcon className="size-3.5" />
           <p className="text-xs">
             {project.endDate

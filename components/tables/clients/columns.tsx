@@ -54,13 +54,16 @@ export const clientColumns: ColumnDef<Client>[] = [
     accessorKey: "name",
     header: "Name",
     cell: ({ row }) => {
-      const { name, image } = row.original;
+      const { id, name, image } = row.original;
 
       return (
-        <div className="flex items-center gap-2">
+        <Link
+          className="group flex items-center gap-2"
+          href={`/dashboard/clients/${id}`}
+        >
           <Avatar image={image} size="sm" value={name} />
-          <span className="text-sm">{name}</span>
-        </div>
+          <span className="text-sm group-hover:underline">{name}</span>
+        </Link>
       );
     },
   },

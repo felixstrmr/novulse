@@ -1,6 +1,5 @@
-import Link from "next/link";
+import CreateTaskDialog from "@/components/dialogs/create-task-dialog";
 import { Badge } from "@/components/ui/badge";
-import { buttonVariants } from "@/components/ui/button";
 import { getTasksByProjectId } from "@/queries/tasks";
 
 type Props = {
@@ -20,12 +19,7 @@ export default async function Page({ params }: Props) {
           <Badge variant="secondary">{tasks.length}</Badge>
         </div>
         <div>
-          <Link
-            className={buttonVariants({ variant: "default" })}
-            href="/dashboard/projects/${projectId}/tasks/create"
-          >
-            Create task
-          </Link>
+          <CreateTaskDialog />
         </div>
       </div>
     </div>

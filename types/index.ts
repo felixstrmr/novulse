@@ -1,5 +1,9 @@
 import type { auth } from "@/lib/auth";
-import type { PROJECT_PRIORITIES, PROJECT_STATUSES } from "@/lib/constants";
+import type {
+  PROJECT_PRIORITIES,
+  PROJECT_STATUSES,
+  TASK_STATUSES,
+} from "@/lib/constants";
 
 export type Session = typeof auth.$Infer.Session;
 
@@ -28,4 +32,11 @@ export type ProjectUser = {
   userName: string;
   userImage: string | null;
   role: string;
+};
+
+export type Task = {
+  id: string;
+  name: string;
+  description: string | null;
+  status: (typeof TASK_STATUSES)[number];
 };
