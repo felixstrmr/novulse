@@ -12,6 +12,7 @@ export const getActivitiesByProjectId = cache(
         description: activities.description,
         createdAt: activities.createdAt,
         userName: users.name,
+        userImage: users.image,
       })
       .from(activities)
       .innerJoin(organizations, eq(activities.organizationId, organizations.id))

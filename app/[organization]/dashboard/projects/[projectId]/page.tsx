@@ -1,5 +1,8 @@
 import CreateTaskDialog from "@/components/dialogs/create-task-dialog";
+import EmptyState from "@/components/empty-state";
+import { TaskIcon } from "@/components/icons/task-icon";
 import { Badge } from "@/components/ui/badge";
+import TasksKanbanView from "@/components/views/tasks/tasks-kanban-view";
 import { getTasksByProjectId } from "@/queries/tasks";
 
 type Props = {
@@ -22,6 +25,17 @@ export default async function Page({ params }: Props) {
           <CreateTaskDialog />
         </div>
       </div>
+      {tasks.length > 0 ? (
+        <TasksKanbanView tasks={[]} />
+      ) : (
+        <div className="flex size-full items-center justify-center">
+          <EmptyState
+            description="Create a task to get started"
+            icon={TaskIcon}
+            title="No tasks found"
+          />
+        </div>
+      )}
     </div>
   );
 }

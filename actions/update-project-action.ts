@@ -3,10 +3,9 @@
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { activities, projects } from "@/db/schema";
 import { authActionClient } from "@/lib/clients/action-client";
 import { updateProjectSchema } from "@/schemas/update-project-schema";
-import { updateProjectTask } from "@/tasks/update-project-task";
 
 export const updateProjectAction = authActionClient
   .metadata({
@@ -23,12 +22,12 @@ export const updateProjectAction = authActionClient
       .where(eq(projects.id, id));
 
     if (oldStatus && newStatus) {
-      updateProjectTask.trigger({
+      await db.insert(activities).values({
         organizationId,
-        oldStatus,
-        newStatus,
         projectId: id,
         userId: session.user.id,
+        type: "project_status_updated",
+        description: `moved from ${oldStatus} to ${newStatus}`,
       });
     }
 

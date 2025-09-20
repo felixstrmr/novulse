@@ -1,10 +1,9 @@
 "use server";
 
 import { db } from "@/db";
-import { projects } from "@/db/schema";
+import { activities, projects, projectUsers } from "@/db/schema";
 import { authActionClient } from "@/lib/clients/action-client";
 import { createProjectSchema } from "@/schemas/create-project-schema";
-import { createProjectTask } from "@/tasks/create-project-task";
 
 export const createProjectAction = authActionClient
   .metadata({
@@ -37,11 +36,21 @@ export const createProjectAction = authActionClient
       })
       .returning();
 
-    createProjectTask.trigger({
-      organizationId,
-      projectId: project.id,
-      userId: session.user.id,
-    });
+    await Promise.all([
+      db.insert(projectUsers).values({
+        organizationId,
+        projectId: project.id,
+        userId: session.user.id,
+        role: "Lead",
+      }),
+      db.insert(activities).values({
+        organizationId,
+        projectId: project.id,
+        userId: session.user.id,
+        type: "project_created",
+        description: "created the project",
+      }),
+    ]);
 
     return project;
   });

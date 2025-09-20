@@ -48,4 +48,5 @@ export type Activity = {
   description: string;
   createdAt: Date;
   userName: string;
+  userImage: string | null;
 };
