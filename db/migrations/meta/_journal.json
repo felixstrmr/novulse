@@ -64,6 +64,13 @@
       "when": 1758352325636,
       "tag": "0008_unique_menace",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1758384631064,
+      "tag": "0009_clumsy_mach_iv",
+      "breakpoints": true
     }
   ]
 }

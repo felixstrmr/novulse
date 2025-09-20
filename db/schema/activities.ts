@@ -17,6 +17,7 @@ export const activityType = pgEnum("activity_type", [
   "project_created",
   "project_updated",
   "project_deleted",
+  "project_status_updated",
 
   "task_created",
   "task_updated",

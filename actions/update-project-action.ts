@@ -1,11 +1,12 @@
 "use server";
 
 import { eq } from "drizzle-orm";
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { db } from "@/db";
 import { projects } from "@/db/schema";
 import { authActionClient } from "@/lib/clients/action-client";
 import { updateProjectSchema } from "@/schemas/update-project-schema";
+import { updateProjectTask } from "@/tasks/update-project-task";
 
 export const updateProjectAction = authActionClient
   .metadata({
@@ -13,11 +14,23 @@ export const updateProjectAction = authActionClient
   })
   .inputSchema(updateProjectSchema)
   .action(async ({ parsedInput, ctx }) => {
-    const { id, status } = parsedInput;
-    const { organizationSlug } = ctx;
+    const { id, oldStatus, newStatus } = parsedInput;
+    const { organizationId, session } = ctx;
 
-    await db.update(projects).set({ status }).where(eq(projects.id, id));
+    await db
+      .update(projects)
+      .set({ status: newStatus })
+      .where(eq(projects.id, id));
 
-    revalidateTag(`projects-${organizationSlug}`);
-    revalidateTag(`project-${id}`);
+    if (oldStatus && newStatus) {
+      updateProjectTask.trigger({
+        organizationId,
+        oldStatus,
+        newStatus,
+        projectId: id,
+        userId: session.user.id,
+      });
+    }
+
+    revalidatePath("/dashboard/projects");
   });

@@ -26,7 +26,9 @@ export default function ProjectsKanbanView({ projects }: Props) {
       updateFn: (state, input) => {
         return state.map((project) => {
           if (project.id === input.id) {
-            const newStatus = PROJECT_STATUSES.find((s) => s === input.status);
+            const newStatus = PROJECT_STATUSES.find(
+              (s) => s === input.newStatus
+            );
             if (newStatus) {
               return { ...project, status: newStatus };
             }
@@ -44,7 +46,9 @@ export default function ProjectsKanbanView({ projects }: Props) {
     if (over && active.data.current.project.status !== over.id) {
       execute({
         id: active.id as string,
-        status: over.id as (typeof PROJECT_STATUSES)[number],
+        // @ts-expect-error - active.data.current is not typed
+        oldStatus: active.data.current.project.status,
+        newStatus: over.id as (typeof PROJECT_STATUSES)[number],
       });
     }
   }

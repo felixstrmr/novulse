@@ -1,3 +1,4 @@
+import type { activityType } from "@/db/schema";
 import type { auth } from "@/lib/auth";
 import type {
   PROJECT_PRIORITIES,
@@ -39,4 +40,12 @@ export type Task = {
   name: string;
   description: string | null;
   status: (typeof TASK_STATUSES)[number];
+};
+
+export type Activity = {
+  id: string;
+  type: (typeof activityType.enumValues)[number];
+  description: string;
+  createdAt: Date;
+  userName: string;
 };

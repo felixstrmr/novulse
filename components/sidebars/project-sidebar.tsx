@@ -3,6 +3,7 @@ import ProjectSidebarActivity from "@/components/sidebars/project-sidebar-activi
 import ProjectSidebarDetails from "@/components/sidebars/project-sidebar-details";
 import ProjectSidebarHeader from "@/components/sidebars/project-sidebar-header";
 import ProjectSidebarMembers from "@/components/sidebars/project-sidebar-members";
+import { getActivitiesByProjectId } from "@/queries/activities";
 import { getProjectUsersByProjectId } from "@/queries/project-users";
 import { getProjectById } from "@/queries/projects";
 
@@ -12,9 +13,10 @@ type Props = {
 };
 
 export default async function ProjectSidebar({ domain, projectId }: Props) {
-  const [project, projectUsers] = await Promise.all([
+  const [project, projectUsers, activities] = await Promise.all([
     getProjectById(domain, projectId),
     getProjectUsersByProjectId(domain, projectId),
+    getActivitiesByProjectId(domain, projectId),
   ]);
 
   if (!project) {
@@ -26,7 +28,7 @@ export default async function ProjectSidebar({ domain, projectId }: Props) {
       <ProjectSidebarHeader project={project} />
       <ProjectSidebarDetails project={project} />
       <ProjectSidebarMembers projectUsers={projectUsers} />
-      <ProjectSidebarActivity />
+      <ProjectSidebarActivity activities={activities} />
     </aside>
   );
 }

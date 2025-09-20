@@ -1,10 +1,10 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { db } from "@/db";
-import { projects, projectUsers } from "@/db/schema";
+import { projects } from "@/db/schema";
 import { authActionClient } from "@/lib/clients/action-client";
 import { createProjectSchema } from "@/schemas/create-project-schema";
+import { createProjectTask } from "@/tasks/create-project-task";
 
 export const createProjectAction = authActionClient
   .metadata({
@@ -37,14 +37,11 @@ export const createProjectAction = authActionClient
       })
       .returning();
 
-    await db.insert(projectUsers).values({
+    createProjectTask.trigger({
       organizationId,
       projectId: project.id,
       userId: session.user.id,
-      role: "Lead",
     });
-
-    revalidatePath("/dashboard/projects");
 
     return project;
   });
