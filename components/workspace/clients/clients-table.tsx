@@ -38,7 +38,10 @@ export function ClientsTable<TData, TValue>({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead className="first:pl-3 last:pr-3" key={header.id}>
+                <TableHead
+                  className="text-muted-foreground first:pl-3 last:pr-3"
+                  key={header.id}
+                >
                   {header.isPlaceholder
                     ? null
                     : flexRender(

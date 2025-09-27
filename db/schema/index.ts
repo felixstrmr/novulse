@@ -1,5 +1,7 @@
 export * from "./accounts";
 export * from "./clients";
+export * from "./file-folders";
+export * from "./files";
 export * from "./project-statuses";
 export * from "./project-users";
 export * from "./projects";

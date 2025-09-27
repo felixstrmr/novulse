@@ -71,6 +71,27 @@
       "when": 1758972928982,
       "tag": "0009_slim_sunspot",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1758986929547,
+      "tag": "0010_military_sleeper",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1758988042518,
+      "tag": "0011_reflective_nick_fury",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1758988095401,
+      "tag": "0012_curvy_millenium_guard",
+      "breakpoints": true
     }
   ]
 }

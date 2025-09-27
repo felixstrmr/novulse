@@ -1,0 +1,2 @@
+ALTER TABLE "files" ADD COLUMN "folder_id" uuid;--> statement-breakpoint
+ALTER TABLE "files" ADD CONSTRAINT "files_folder_id_file_folders_id_fk" FOREIGN KEY ("folder_id") REFERENCES "public"."file_folders"("id") ON DELETE cascade ON UPDATE no action;

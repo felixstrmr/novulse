@@ -54,9 +54,15 @@ export default function DashboardSidebarDropdown({
         <DropdownMenuLabel>Workspaces</DropdownMenuLabel>
         {workspaces.map((workspace) => (
           <DropdownMenuItem
+            className="p-1"
             key={workspace.id}
             onClick={() => router.push(getFullWorkspaceUrl(workspace.domain))}
           >
+            <div className="relative inset-shadow-2xs inset-shadow-zinc-500 flex size-5 items-center justify-center rounded-[5px] border border-primary bg-primary shadow-xs before:absolute before:inset-0 before:rounded-[4px] before:bg-linear-to-b before:from-white/25 before:to-transparent">
+              <span className="text-primary-foreground text-xs uppercase">
+                {workspace.name.charAt(0)}
+              </span>
+            </div>
             <p className="text-sm">{workspace.name}</p>
             {workspace.id === currentWorkspace.id && (
               <CheckIcon className="ml-auto size-3.5 text-muted-foreground" />

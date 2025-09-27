@@ -9,7 +9,7 @@ export default function TaskSidebarTabs() {
   const items = ["overview", "comments", "versions"];
 
   return (
-    <div className="flex border-b px-3 pt-3">
+    <div className="flex gap-1 border-b px-3 pt-3">
       {items.map((item) => (
         <div className="flex flex-col gap-1" key={item}>
           <button
