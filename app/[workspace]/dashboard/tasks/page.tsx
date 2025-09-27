@@ -1,5 +1,6 @@
-import { ListTodoIcon, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Suspense } from "react";
+import { TasksIcon } from "@/components/icons";
 import TasksView from "@/components/workspace/tasks/tasks-view";
 import { extractDomain } from "@/utils";
 
@@ -15,7 +16,7 @@ export default async function Page({
     <div className="flex size-full flex-col">
       <div className="border-b p-3">
         <div className="flex items-center gap-2">
-          <ListTodoIcon className="size-4 text-muted-foreground" />
+          <TasksIcon className="size-4 text-muted-foreground" />
           <h1 className="font-semibold text-2xl tracking-tight">Tasks</h1>
         </div>
       </div>

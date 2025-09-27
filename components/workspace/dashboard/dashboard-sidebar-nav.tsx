@@ -1,17 +1,16 @@
 "use client";
 
-import {
-  Box,
-  CogIcon,
-  FilesIcon,
-  HomeIcon,
-  InboxIcon,
-  ListTodo,
-  type LucideIcon,
-  UsersIcon,
-} from "lucide-react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
+import {
+  ClientsIcon,
+  DashboardIcon,
+  FilesIcon,
+  InboxIcon,
+  ProjectsIcon,
+  SettingsIcon,
+  TasksIcon,
+} from "@/components/icons";
 import { cn } from "@/utils";
 
 export default function DashboardSidebarNav() {
@@ -21,7 +20,7 @@ export default function DashboardSidebarNav() {
     {
       name: "Dashboard",
       href: "/dashboard",
-      icon: HomeIcon,
+      icon: DashboardIcon,
       isActive: segment === null,
     },
     {
@@ -36,19 +35,19 @@ export default function DashboardSidebarNav() {
     {
       name: "Clients",
       href: "/dashboard/clients",
-      icon: UsersIcon,
+      icon: ClientsIcon,
       isActive: segment === "clients",
     },
     {
       name: "Projects",
       href: "/dashboard/projects",
-      icon: Box,
+      icon: ProjectsIcon,
       isActive: segment === "projects",
     },
     {
       name: "Tasks",
       href: "/dashboard/tasks",
-      icon: ListTodo,
+      icon: TasksIcon,
       isActive: segment === "tasks",
     },
     {
@@ -63,7 +62,7 @@ export default function DashboardSidebarNav() {
     {
       name: "Settings",
       href: "/dashboard/settings",
-      icon: CogIcon,
+      icon: SettingsIcon,
       isActive: segment === "settings",
     },
   ];
@@ -99,20 +98,18 @@ function NavItem({
 }: {
   name: string;
   href: string;
-  icon: LucideIcon;
+  icon: React.ElementType;
   isActive: boolean;
 }) {
   return (
     <Link
       className={cn(
         "flex h-8 items-center gap-2 rounded-md px-2",
-        isActive
-          ? "bg-muted text-foreground"
-          : "text-muted-foreground hover:bg-muted"
+        isActive ? "bg-muted text-foreground" : "hover:bg-muted"
       )}
       href={href}
     >
-      <Icon className="size-4" />
+      <Icon className="size-4 text-muted-foreground/75" />
       <span className="text-sm">{name}</span>
     </Link>
   );

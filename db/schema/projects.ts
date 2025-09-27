@@ -1,5 +1,6 @@
 import { relations } from "drizzle-orm";
 import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { clients } from "@/db/schema/clients";
 import { projectStatuses } from "@/db/schema/project-statuses";
 import { projectUsers } from "@/db/schema/project-users";
 import { workspaces } from "@/db/schema/workspaces";
@@ -18,6 +19,9 @@ export const projects = pgTable("projects", {
   statusId: uuid("status_id")
     .notNull()
     .references(() => projectStatuses.id, { onDelete: "restrict" }),
+  clientId: uuid("client_id")
+    .notNull()
+    .references(() => clients.id, { onDelete: "cascade" }),
 
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
@@ -31,6 +35,10 @@ export const projectsRelations = relations(projects, ({ one, many }) => ({
   status: one(projectStatuses, {
     fields: [projects.statusId],
     references: [projectStatuses.id],
+  }),
+  client: one(clients, {
+    fields: [projects.clientId],
+    references: [clients.id],
   }),
 
   users: many(projectUsers),

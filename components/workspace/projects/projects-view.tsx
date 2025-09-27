@@ -8,6 +8,14 @@ export default async function ProjectsView({ domain }: { domain: string }) {
     getProjectStatuses(domain),
   ]);
 
+  if (projects.length === 0) {
+    return (
+      <div className="flex size-full items-center justify-center">
+        No projects found
+      </div>
+    );
+  }
+
   return (
     <ProjectsKanbanView projectStatuses={projectStatuses} projects={projects} />
   );

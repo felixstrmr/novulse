@@ -1,9 +1,10 @@
 "use client";
 
-import { CheckIcon, ChevronsUpDown, CogIcon, LogOutIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDown } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { LogOutIcon, SettingsIcon } from "@/components/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,7 +46,7 @@ export default function DashboardSidebarDropdown({
       <DropdownMenuContent align="start" className="w-58">
         <DropdownMenuItem asChild>
           <Link href="/dashboard/settings">
-            <CogIcon />
+            <SettingsIcon />
             Settings
           </Link>
         </DropdownMenuItem>

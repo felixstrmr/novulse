@@ -1,4 +1,4 @@
-import { FilesIcon } from "lucide-react";
+import { FilesIcon } from "@/components/icons";
 
 export default function Page() {
   return (

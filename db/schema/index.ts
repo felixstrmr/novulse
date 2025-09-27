@@ -4,6 +4,7 @@ export * from "./project-statuses";
 export * from "./project-users";
 export * from "./projects";
 export * from "./sessions";
+export * from "./task-statuses";
 export * from "./tasks";
 export * from "./users";
 export * from "./verifications";

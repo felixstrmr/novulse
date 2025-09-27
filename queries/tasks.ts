@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import React from "react";
 import { db } from "@/db";
 import { tasks, workspaces } from "@/db/schema";
@@ -20,3 +20,23 @@ export const getTasks = React.cache(async (domain: string) => {
 
   return data;
 });
+
+export const getTaskById = React.cache(
+  async (domain: string, taskId: string) => {
+    const [data] = await db
+      .select({
+        id: tasks.id,
+        name: tasks.name,
+        description: tasks.description,
+        type: tasks.type,
+        workspaceId: tasks.workspaceId,
+        createdAt: tasks.createdAt,
+        updatedAt: tasks.updatedAt,
+      })
+      .from(tasks)
+      .innerJoin(workspaces, eq(tasks.workspaceId, workspaces.id))
+      .where(and(eq(workspaces.domain, domain), eq(tasks.id, taskId)));
+
+    return data;
+  }
+);

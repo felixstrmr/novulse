@@ -28,10 +28,14 @@ export const authActionClient = actionClient.use(async ({ next }) => {
     getWorkspaceByDomain(domain),
   ]);
 
+  if (!(session && workspace)) {
+    throw new Error("Unauthorized");
+  }
+
   return next({
     ctx: {
       session,
-      workspace,
+      workspaceId: workspace.id,
     },
   });
 });

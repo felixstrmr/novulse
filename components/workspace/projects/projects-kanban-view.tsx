@@ -55,13 +55,13 @@ export default function ProjectsKanbanView({
 
   return (
     <DndContext id={id} onDragEnd={handleDragEnd} sensors={sensors}>
-      <div className="flex size-full gap-2">
+      <div className="flex size-full gap-2 overflow-x-auto">
         {projectStatuses.map((projectStatus) => (
           <ProjectsKanbanColumn
             key={projectStatus.id}
             projectStatus={projectStatus}
             projects={optimisticProjects.filter(
-              (project) => project.statusId === projectStatus.id
+              (project) => project.status.id === projectStatus.id
             )}
           />
         ))}

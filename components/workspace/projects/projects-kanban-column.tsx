@@ -31,7 +31,7 @@ export default function ProjectsKanbanColumn({
       </div>
       <div
         className={cn(
-          "h-full rounded-lg bg-muted/50 p-1",
+          "h-full space-y-1 rounded-lg bg-muted/50 p-1",
           isOver && "bg-muted"
         )}
       >

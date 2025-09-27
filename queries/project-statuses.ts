@@ -9,6 +9,7 @@ export const getProjectStatuses = async (domain: string) => {
       name: projectStatuses.name,
       description: projectStatuses.description,
       color: projectStatuses.color,
+      order: projectStatuses.order,
       workspaceId: projectStatuses.workspaceId,
       createdAt: projectStatuses.createdAt,
       updatedAt: projectStatuses.updatedAt,
