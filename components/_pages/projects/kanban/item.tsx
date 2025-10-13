@@ -1,6 +1,7 @@
 import { useDraggable } from "@dnd-kit/core";
 import { CalendarIcon, CalendarX2Icon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import ProjectPriorityIcon from "@/components/icons/dynamic/project-priority-icon";
 import { formatRelativeTime } from "@/utils/date";
 
 export default function KanbanItem({ project }: { project: any }) {
@@ -28,9 +29,18 @@ export default function KanbanItem({ project }: { project: any }) {
       {...attributes}
       {...listeners}
     >
-      <div className="flex items-center gap-1.5 p-3 text-muted-foreground">
-        <UserIcon className="size-3.5" />
-        <p className="text-xs">{project.client.name}</p>
+      <div className="flex w-full items-center justify-between p-3">
+        <div className="flex items-center gap-1.5 text-muted-foreground">
+          <UserIcon className="size-3.5" />
+          <p className="text-xs">{project.client.name}</p>
+        </div>
+        {project.priority && (
+          <ProjectPriorityIcon
+            className="size-3.5"
+            icon={project.priority?.icon}
+            style={{ color: project.priority?.color }}
+          />
+        )}
       </div>
       <div className="px-3">
         <p className="text-sm">{project.name}</p>

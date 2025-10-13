@@ -6,7 +6,9 @@ export const getProjects = cache(async (domain: string) => {
 
   const { data } = await supabase
     .from("projects")
-    .select("*, workspace(domain), client(id, name, slug)")
+    .select(
+      "*, workspace(domain), client(id, name, slug), priority(name, icon, color)"
+    )
     .eq("workspace.domain", domain)
     .throwOnError();
 
