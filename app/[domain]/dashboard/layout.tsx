@@ -18,7 +18,9 @@ export default async function DashboardLayout({
       <Suspense fallback={<SidebarSkeleton />}>
         <DashboardSidebar subdomain={subdomain} />
       </Suspense>
-      <div className="flex size-full rounded-lg bg-background">{children}</div>
+      <div className="flex size-full overflow-hidden rounded-lg bg-background">
+        {children}
+      </div>
     </div>
   );
 }

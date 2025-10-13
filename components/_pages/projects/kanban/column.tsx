@@ -21,34 +21,35 @@ export default function KanbanColumn({
   });
 
   return (
-    <div
-      className={cn(
-        "flex h-fit flex-col rounded-lg px-1 pb-1",
-        isOver ? "bg-foreground/10" : "bg-muted"
-      )}
-      ref={setNodeRef}
-    >
-      <div className="flex h-8 min-w-64 items-center gap-2 pl-1">
-        <ProjectStatusIcon
-          className="size-3.5"
-          icon={status.icon}
-          style={{ color: status.color }}
-        />
-        <p className="text-sm">{status.name}</p>
-        <p className="-mb-0.5 text-muted-foreground text-xs">
-          {projects.length}
-        </p>
-        <button
-          className="ml-auto flex size-6 cursor-pointer items-center justify-center rounded-sm hover:bg-foreground/10"
-          type="button"
-        >
-          <PlusIcon className="size-4 text-muted-foreground" />
-        </button>
-      </div>
-      <div className="space-y-1">
-        {projects.map((project) => (
-          <KanbanItem key={project.id} project={project} />
-        ))}
+    <div className="flex h-full flex-col" ref={setNodeRef}>
+      <div
+        className={cn(
+          "flex h-fit flex-col rounded-lg px-1 pb-1",
+          isOver ? "bg-foreground/10" : "bg-muted"
+        )}
+      >
+        <div className="flex h-8 min-w-64 items-center gap-2 pl-1">
+          <ProjectStatusIcon
+            className="size-3.5"
+            icon={status.icon}
+            style={{ color: status.color }}
+          />
+          <p className="text-sm">{status.name}</p>
+          <p className="-mb-0.5 text-muted-foreground text-xs">
+            {projects.length}
+          </p>
+          <button
+            className="ml-auto flex size-6 cursor-pointer items-center justify-center rounded-sm hover:bg-foreground/10"
+            type="button"
+          >
+            <PlusIcon className="size-4 text-muted-foreground" />
+          </button>
+        </div>
+        <div className="space-y-1">
+          {projects.map((project) => (
+            <KanbanItem key={project.id} project={project} />
+          ))}
+        </div>
       </div>
     </div>
   );

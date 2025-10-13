@@ -8,6 +8,7 @@ export const getProjectStatuses = cache(async (domain: string) => {
     .from("project_statuses")
     .select("*, workspace(domain)")
     .eq("workspace.domain", domain)
+    .order("position", { ascending: true })
     .throwOnError();
 
   return data;

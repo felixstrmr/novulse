@@ -8,6 +8,7 @@ export const getClients = cache(async (domain: string) => {
     .from("clients")
     .select("*, workspace(domain)")
     .eq("workspace.domain", domain)
+    .order("created_at", { ascending: true })
     .throwOnError();
 
   return data;

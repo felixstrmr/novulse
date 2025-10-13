@@ -10,6 +10,7 @@ export const getProjects = cache(async (domain: string) => {
       "*, workspace(domain), client(id, name, slug), priority(name, icon, color)"
     )
     .eq("workspace.domain", domain)
+    .order("created_at", { ascending: true })
     .throwOnError();
 
   return data;
