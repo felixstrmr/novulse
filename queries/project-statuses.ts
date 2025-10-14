@@ -6,7 +6,7 @@ export const getProjectStatuses = cache(async (domain: string) => {
 
   const { data } = await supabase
     .from("project_statuses")
-    .select("*, workspace(domain)")
+    .select("*, workspace!inner(domain)")
     .eq("workspace.domain", domain)
     .order("position", { ascending: true })
     .throwOnError();

@@ -14,7 +14,7 @@ export const getWorkspaceUser = cache(async (domain: string) => {
 
   const { data } = await supabase
     .from("workspace_users")
-    .select("*, workspace(id, domain)")
+    .select("*, workspace!inner(id, domain)")
     .eq("workspace.domain", domain)
     .eq("user", user.id)
     .maybeSingle()

@@ -6,7 +6,7 @@ export const getClients = cache(async (domain: string) => {
 
   const { data } = await supabase
     .from("clients")
-    .select("*, workspace(domain)")
+    .select("*, workspace!inner(domain)")
     .eq("workspace.domain", domain)
     .order("created_at", { ascending: true })
     .throwOnError();

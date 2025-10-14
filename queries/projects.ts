@@ -7,7 +7,7 @@ export const getProjects = cache(async (domain: string) => {
   const { data } = await supabase
     .from("projects")
     .select(
-      "*, workspace(domain), client(id, name, slug), priority(name, icon, color)"
+      "*, workspace!inner(domain), client(id, name, slug), priority(name, icon, color)"
     )
     .eq("workspace.domain", domain)
     .order("created_at", { ascending: true })
@@ -22,7 +22,7 @@ export const getProject = cache(async (domain: string, projectId: string) => {
   const { data } = await supabase
     .from("projects")
     .select(
-      "*, workspace(domain), client(id, name, slug), priority(name, icon, color)"
+      "*, workspace!inner(domain), client(id, name, slug), priority(name, icon, color)"
     )
     .eq("workspace.domain", domain)
     .eq("id", projectId)
