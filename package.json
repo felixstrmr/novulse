@@ -8,7 +8,7 @@
     "start": "next start -p 80",
     "check": "bunx ultracite check",
     "fix": "bunx ultracite fix",
-    "supabase:types": "bunx supabase gen types typescript --project-id fbdkheluvrqobfiuzmzt > types/supabase.ts --schema public"
+    "supabase:types": "bunx supabase gen types typescript --project-id halliunonoujkthsupuy > types/supabase.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -31,6 +31,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.65.0",
     "sonner": "^2.0.7",
+    "supabase": "^2.51.0",
     "tailwind-merge": "^3.3.1",
     "zod": "^4.1.12"
   },

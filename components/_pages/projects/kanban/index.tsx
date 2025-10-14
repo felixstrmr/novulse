@@ -11,13 +11,14 @@ import { useOptimisticAction } from "next-safe-action/hooks";
 import { useId } from "react";
 import { updateProjectAction } from "@/actions/update-project-action";
 import KanbanColumn from "@/components/_pages/projects/kanban/column";
+import type { Project, ProjectStatus } from "@/types";
 
 export default function Kanban({
   projects,
   statuses,
 }: {
-  projects: any;
-  statuses: any;
+  projects: Project[];
+  statuses: ProjectStatus[];
 }) {
   const { execute, optimisticState: optimisticProjects } = useOptimisticAction(
     updateProjectAction,

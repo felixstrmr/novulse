@@ -2,9 +2,10 @@ import { useDraggable } from "@dnd-kit/core";
 import { CalendarIcon, CalendarX2Icon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ProjectPriorityIcon from "@/components/icons/dynamic/project-priority-icon";
+import type { Project } from "@/types";
 import { formatRelativeTime } from "@/utils/date";
 
-export default function KanbanItem({ project }: { project: any }) {
+export default function KanbanItem({ project }: { project: Project }) {
   const router = useRouter();
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
@@ -48,12 +49,16 @@ export default function KanbanItem({ project }: { project: any }) {
       <div className="flex items-center gap-1.5 p-3">
         <div className="flex items-center gap-1.5">
           <CalendarIcon className="size-3.5 text-muted-foreground" />
-          <p className="text-xs">{formatRelativeTime(project.start_date)}</p>
+          {project.start_date && (
+            <p className="text-xs">{formatRelativeTime(project.start_date)}</p>
+          )}
         </div>
         <p className="text-muted-foreground text-xs">-</p>
         <div className="flex items-center gap-1.5">
           <CalendarX2Icon className="size-3.5 text-muted-foreground" />
-          <p className="text-xs">{formatRelativeTime(project.target_date)}</p>
+          {project.target_date && (
+            <p className="text-xs">{formatRelativeTime(project.target_date)}</p>
+          )}
         </div>
       </div>
     </button>

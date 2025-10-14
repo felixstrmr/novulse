@@ -4,14 +4,15 @@ import { useDroppable } from "@dnd-kit/core";
 import { PlusIcon } from "lucide-react";
 import KanbanItem from "@/components/_pages/projects/kanban/item";
 import ProjectStatusIcon from "@/components/icons/dynamic/project-status-icon";
+import type { Project, ProjectStatus } from "@/types";
 import { cn } from "@/utils/ui";
 
 export default function KanbanColumn({
   status,
   projects,
 }: {
-  status: any;
-  projects: any[];
+  status: ProjectStatus;
+  projects: Project[];
 }) {
   const { setNodeRef, isOver } = useDroppable({
     id: status.id,
