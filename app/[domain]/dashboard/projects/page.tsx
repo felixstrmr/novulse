@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Projects from "@/components/_pages/projects";
-import ProjectsSkeleton from "@/components/_pages/projects/skeleton";
+import Projects from "@/app/[domain]/dashboard/projects/_components/main";
+import ProjectsSkeleton from "@/app/[domain]/dashboard/projects/_components/skeleton";
 import { getWorkspaceSubdomain } from "@/utils/workspace";
 
 export default async function ProjectsPage({

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Clients from "@/components/_pages/clients";
-import ClientsSkeleton from "@/components/_pages/clients/skeleton";
+import Clients from "@/app/[domain]/dashboard/clients/_components/main";
+import ClientsSkeleton from "@/app/[domain]/dashboard/clients/_components/skeleton";
 import { getWorkspaceSubdomain } from "@/utils/workspace";
 
 export default async function ClientsPage({

@@ -1,4 +1,4 @@
-import Kanban from "@/components/_pages/projects/kanban";
+import Kanban from "@/app/[domain]/dashboard/projects/_components/kanban";
 import { getProjectStatuses } from "@/queries/project-statuses";
 import { getProjects } from "@/queries/projects";
 

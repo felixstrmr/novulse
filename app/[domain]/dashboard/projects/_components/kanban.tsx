@@ -10,7 +10,7 @@ import {
 import { useOptimisticAction } from "next-safe-action/hooks";
 import { useId } from "react";
 import { updateProjectAction } from "@/actions/update-project-action";
-import KanbanColumn from "@/components/_pages/projects/kanban/column";
+import KanbanColumn from "@/app/[domain]/dashboard/projects/_components/kanban-column";
 import type { Project, ProjectStatus } from "@/types";
 
 export default function Kanban({

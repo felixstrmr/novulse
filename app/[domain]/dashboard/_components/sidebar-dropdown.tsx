@@ -10,14 +10,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import type { Workspace } from "@/types";
 import { cn } from "@/utils/ui";
 
 export default function SidebarDropdown({
   workspaces,
   activeWorkspace,
 }: {
-  workspaces: any[];
-  activeWorkspace: any;
+  workspaces: Workspace[];
+  activeWorkspace: Workspace;
 }) {
   const [isOpen, setOpen] = useState(false);
 

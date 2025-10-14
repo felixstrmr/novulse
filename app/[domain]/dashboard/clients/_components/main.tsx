@@ -1,5 +1,5 @@
-import { Table } from "@/components/_pages/clients/table";
-import { columns } from "@/components/_pages/clients/table/columns";
+import { Table } from "@/app/[domain]/dashboard/clients/_components/table";
+import { TableColumns } from "@/app/[domain]/dashboard/clients/_components/table-columns";
 import { getClients } from "@/queries/clients";
 
 export default async function Clients({ subdomain }: { subdomain: string }) {
@@ -15,7 +15,7 @@ export default async function Clients({ subdomain }: { subdomain: string }) {
           </div>
         </div>
       </div>
-      <Table columns={columns} data={clients} />
+      <Table columns={TableColumns} data={clients} />
     </div>
   );
 }

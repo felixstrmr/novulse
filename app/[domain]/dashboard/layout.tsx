@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import DashboardSidebar from "@/components/_layouts/dashboard/sidebar";
-import SidebarSkeleton from "@/components/_layouts/dashboard/sidebar/skeleton";
+import DashboardSidebar from "@/app/[domain]/dashboard/_components/sidebar";
+import SidebarSkeleton from "@/app/[domain]/dashboard/_components/sidebar-skeleton";
 import { getWorkspaceSubdomain } from "@/utils/workspace";
 
 export default async function DashboardLayout({

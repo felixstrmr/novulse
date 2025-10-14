@@ -1,7 +1,7 @@
 import { SearchIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-import SidebarDropdown from "@/components/_layouts/dashboard/sidebar/dropdown";
-import SidebarNavigation from "@/components/_layouts/dashboard/sidebar/navigation";
+import SidebarDropdown from "@/app/[domain]/dashboard/_components/sidebar-dropdown";
+import SidebarNavigation from "@/app/[domain]/dashboard/_components/sidebar-navigation";
 import { getWorkspaces } from "@/queries/workspaces";
 
 export default async function Sidebar({ subdomain }: { subdomain: string }) {

@@ -2,7 +2,7 @@
 
 import { useDroppable } from "@dnd-kit/core";
 import { PlusIcon } from "lucide-react";
-import KanbanItem from "@/components/_pages/projects/kanban/item";
+import KanbanItem from "@/app/[domain]/dashboard/projects/_components/kanban-item";
 import ProjectStatusIcon from "@/components/icons/dynamic/project-status-icon";
 import type { Project, ProjectStatus } from "@/types";
 import { cn } from "@/utils/ui";
