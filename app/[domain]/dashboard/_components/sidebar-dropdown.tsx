@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDownIcon, CogIcon, LogOutIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -12,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { Workspace } from "@/types";
 import { cn } from "@/utils/ui";
+import { getWorkspaceUrl } from "@/utils/workspace";
 
 export default function SidebarDropdown({
   workspaces,
@@ -37,15 +39,19 @@ export default function SidebarDropdown({
         <ChevronDownIcon className="size-4 shrink-0 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-58">
-        <DropdownMenuItem>
-          <CogIcon />
-          Settings
+        <DropdownMenuItem asChild>
+          <Link href="/dashboard/settings">
+            <CogIcon />
+            Settings
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Workspaces</DropdownMenuLabel>
         {workspaces.map((workspace) => (
-          <DropdownMenuItem key={workspace.id}>
-            {workspace.name}
+          <DropdownMenuItem asChild key={workspace.id}>
+            <Link href={`${getWorkspaceUrl(workspace.domain)}/dashboard`}>
+              {workspace.name}
+            </Link>
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />

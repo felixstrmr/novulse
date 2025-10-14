@@ -15,3 +15,19 @@ export const getProjects = cache(async (domain: string) => {
 
   return data;
 });
+
+export const getProject = cache(async (domain: string, projectId: string) => {
+  const supabase = await supabaseClient();
+
+  const { data } = await supabase
+    .from("projects")
+    .select(
+      "*, workspace(domain), client(id, name, slug), priority(name, icon, color)"
+    )
+    .eq("workspace.domain", domain)
+    .eq("id", projectId)
+    .maybeSingle()
+    .throwOnError();
+
+  return data;
+});

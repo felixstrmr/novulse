@@ -2,12 +2,12 @@
 
 import {
   BoxIcon,
+  CogIcon,
   FilesIcon,
   HomeIcon,
   InboxIcon,
   ListTodoIcon,
   type LucideIcon,
-  SettingsIcon,
   UsersIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -64,7 +64,7 @@ export default function SidebarNavigation() {
     {
       name: "Settings",
       href: "/dashboard/settings",
-      icon: SettingsIcon,
+      icon: CogIcon,
       isActive: segment === "settings",
     },
   ];
