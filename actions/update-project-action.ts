@@ -14,11 +14,7 @@ export const updateProjectAction = authActionClient
     const { id, statusId } = parsedInput;
     const { workspaceUser } = ctx;
 
-    if (
-      workspaceUser.role !== "owner" &&
-      workspaceUser.role !== "manager" &&
-      workspaceUser.role !== "designer"
-    ) {
+    if (!workspaceUser) {
       throw new Error("Unauthorized");
     }
 
