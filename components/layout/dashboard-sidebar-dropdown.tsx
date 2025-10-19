@@ -30,8 +30,8 @@ export default function DashboardSidebarDropdown({
           isOpen ? "bg-muted" : "bg-transparent hover:bg-muted"
         )}
       >
-        <div className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-blue-200/75">
-          <p className="text-blue-600 text-xs">
+        <div className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-orange-100">
+          <p className="text-orange-500 text-xs">
             {activeWorkspace.name.charAt(0).toUpperCase()}
           </p>
         </div>
@@ -47,8 +47,8 @@ export default function DashboardSidebarDropdown({
         <DropdownMenuLabel>Workspaces</DropdownMenuLabel>
         {workspaces.map((workspace) => (
           <DropdownMenuItem className="gap-1.5 pl-1" key={workspace.id}>
-            <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] bg-blue-200/75">
-              <p className="text-blue-600 text-xxs">
+            <div className="flex size-5 shrink-0 items-center justify-center rounded-[4px] bg-orange-100">
+              <p className="text-orange-500 text-xxs">
                 {workspace.name.charAt(0).toUpperCase()}
               </p>
             </div>

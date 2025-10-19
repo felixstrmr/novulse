@@ -14,7 +14,7 @@ export default async function DashboardLayout({
   const subdomain = getSubdomain(domain);
 
   return (
-    <div className="flex size-full">
+    <div className="flex size-full gap-1 bg-muted p-1">
       <Suspense fallback={<DashboardSidebarSkeleton />}>
         <DashboardSidebar subdomain={subdomain} />
       </Suspense>

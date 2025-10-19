@@ -24,7 +24,7 @@ export default async function DashboardSidebar({
   }
 
   return (
-    <aside className="flex min-w-64 max-w-64 flex-col gap-3 border-r p-3">
+    <aside className="flex min-w-64 max-w-64 flex-col gap-3 rounded-lg bg-background p-3">
       <div className="flex items-center justify-between gap-2">
         <DashboardSidebarDropdown
           activeWorkspace={activeWorkspace}
