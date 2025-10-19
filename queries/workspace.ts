@@ -7,7 +7,7 @@ export const getWorkspaces = cache(async () => {
   const { data } = await supabase
     .from("workspaces")
     .select(`
-      *,
+      *
     `)
     .throwOnError();
 
