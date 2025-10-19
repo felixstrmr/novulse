@@ -12,8 +12,8 @@ export const ClientsTableColumns: ColumnDef<Client>[] = [
 
       return (
         <div className="flex items-center gap-2">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-orange-100">
-            <p className="text-orange-500 text-xs">
+          <div className="flex size-6 shrink-0 items-center justify-center rounded-sm border bg-muted">
+            <p className="text-muted-foreground text-xs">
               {client.name.charAt(0).toUpperCase()}
             </p>
           </div>

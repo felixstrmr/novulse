@@ -1,11 +1,11 @@
 import { cache } from "react";
 import { supabaseClient } from "@/lib/clients/supabase-client";
 
-export const getClients = cache(async (domain: string) => {
+export const getProjects = cache(async (domain: string) => {
   const supabase = await supabaseClient();
 
   const { data } = await supabase
-    .from("clients")
+    .from("projects")
     .select(`
       *,
       workspace!inner(domain)
