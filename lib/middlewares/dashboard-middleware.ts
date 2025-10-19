@@ -2,7 +2,7 @@ import type { User } from "@supabase/supabase-js";
 import { type NextRequest, NextResponse } from "next/server";
 import { PUBLIC_APP_ROUTES, VALID_APP_ROUTES } from "@/lib/constants";
 
-export default function AppMiddleware(
+export default function DashboardMiddleware(
   request: NextRequest,
   user: User | null,
   response: NextResponse

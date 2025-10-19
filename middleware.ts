@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import supabaseMiddlewareClient from "@/lib/clients/supabase-middleware-client";
 import { env } from "@/lib/env";
-import AppMiddleware from "@/lib/middlewares/app-middleware";
+import DashboardMiddleware from "@/lib/middlewares/dashboard-middleware";
 import HomeMiddleware from "@/lib/middlewares/home-middleware";
 import WorkspaceMiddleware from "@/lib/middlewares/workspace-middleware";
 
@@ -14,8 +14,8 @@ export async function middleware(request: NextRequest) {
 
   const { user, response } = await supabaseMiddlewareClient(request);
 
-  if (hostname === `app.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
-    return AppMiddleware(request, user, response);
+  if (hostname === `dashboard.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+    return DashboardMiddleware(request, user, response);
   }
 
   return WorkspaceMiddleware(request, user, response);
