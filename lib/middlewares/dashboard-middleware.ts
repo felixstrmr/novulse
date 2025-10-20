@@ -1,6 +1,6 @@
 import type { User } from "@supabase/supabase-js";
 import { type NextRequest, NextResponse } from "next/server";
-import { PUBLIC_APP_ROUTES, VALID_APP_ROUTES } from "@/lib/constants";
+import { PUBLIC_APP_ROUTES, VALID_DASHBOARD_ROUTES } from "@/lib/constants";
 
 export default function DashboardMiddleware(
   request: NextRequest,
@@ -12,7 +12,7 @@ export default function DashboardMiddleware(
   const searchParams = url.searchParams;
   const path = `${pathname === "/" ? "" : pathname}${searchParams ? `?${searchParams}` : ""}`;
 
-  if (!VALID_APP_ROUTES.includes(pathname)) {
+  if (!VALID_DASHBOARD_ROUTES.includes(pathname)) {
     return NextResponse.rewrite(new URL("/novulse/not-found", request.url));
   }
 
@@ -20,7 +20,7 @@ export default function DashboardMiddleware(
     return NextResponse.redirect(new URL("/signin", request.url));
   }
 
-  const rewriteUrl = new URL(`/app${path}`, request.url);
+  const rewriteUrl = new URL(`/dashboard${path}`, request.url);
   const rewriteResponse = NextResponse.rewrite(rewriteUrl, response);
 
   return rewriteResponse;
