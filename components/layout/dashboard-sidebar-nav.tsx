@@ -1,16 +1,17 @@
 "use client";
 
+import {
+  BoxIcon,
+  CogIcon,
+  FileIcon,
+  HouseIcon,
+  InboxIcon,
+  ListTodoIcon,
+  type LucideIcon,
+  UserIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import {
-  ClientIcon,
-  DashboardIcon,
-  FileIcon,
-  InboxIcon,
-  ProjectIcon,
-  SettingIcon,
-  TaskIcon,
-} from "@/components/icons";
 import { cn } from "@/utils/ui";
 
 export default function DashboardSidebarNav() {
@@ -20,7 +21,7 @@ export default function DashboardSidebarNav() {
     {
       name: "Dashboard",
       href: "/dashboard",
-      icon: DashboardIcon,
+      icon: HouseIcon,
       isActive: segment === null,
     },
     {
@@ -35,19 +36,19 @@ export default function DashboardSidebarNav() {
     {
       name: "Clients",
       href: "/dashboard/clients",
-      icon: ClientIcon,
+      icon: UserIcon,
       isActive: segment === "clients",
     },
     {
       name: "Projects",
       href: "/dashboard/projects",
-      icon: ProjectIcon,
+      icon: BoxIcon,
       isActive: segment === "projects",
     },
     {
       name: "Tasks",
       href: "/dashboard/tasks",
-      icon: TaskIcon,
+      icon: ListTodoIcon,
       isActive: segment === "tasks",
     },
     {
@@ -62,7 +63,7 @@ export default function DashboardSidebarNav() {
     {
       name: "Settings",
       href: "/dashboard/settings",
-      icon: SettingIcon,
+      icon: CogIcon,
       isActive: segment === "settings",
     },
   ];
@@ -98,7 +99,7 @@ function NavItem({
 }: {
   name: string;
   href: string;
-  icon: React.ElementType;
+  icon: LucideIcon;
   isActive: boolean;
 }) {
   return (
@@ -106,12 +107,12 @@ function NavItem({
       className={cn(
         "flex h-8 items-center gap-2 rounded-md px-2",
         isActive
-          ? "bg-muted text-primary"
+          ? "bg-muted text-foreground"
           : "text-muted-foreground hover:bg-muted"
       )}
       href={href}
     >
-      <Icon className="size-4 shrink-0 text-muted-foreground/75" />
+      <Icon className="size-4 shrink-0" />
       <span className="text-sm">{name}</span>
     </Link>
   );
