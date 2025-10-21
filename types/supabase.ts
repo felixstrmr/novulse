@@ -125,6 +125,52 @@ export type Database = {
           },
         ]
       }
+      project_users: {
+        Row: {
+          created_at: string
+          id: string
+          project: string
+          user: string
+          workspace: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          project: string
+          user: string
+          workspace: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          project?: string
+          user?: string
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_users_project_fkey"
+            columns: ["project"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_users_user_fkey"
+            columns: ["user"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_users_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       projects: {
         Row: {
           client: string
@@ -134,7 +180,9 @@ export type Database = {
           id: string
           name: string
           priority: string | null
+          start_date: string | null
           status: string
+          target_date: string | null
           workspace: string
         }
         Insert: {
@@ -145,7 +193,9 @@ export type Database = {
           id?: string
           name: string
           priority?: string | null
+          start_date?: string | null
           status: string
+          target_date?: string | null
           workspace: string
         }
         Update: {
@@ -156,7 +206,9 @@ export type Database = {
           id?: string
           name?: string
           priority?: string | null
+          start_date?: string | null
           status?: string
+          target_date?: string | null
           workspace?: string
         }
         Relationships: [

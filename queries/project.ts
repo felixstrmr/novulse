@@ -8,7 +8,8 @@ export const getProjects = cache(async (domain: string) => {
     .from("projects")
     .select(`
       *,
-      workspace!inner(domain)
+      workspace!inner(domain),
+      client(id, name)
     `)
     .eq("workspace.domain", domain)
     .order("created_at", { ascending: false })
