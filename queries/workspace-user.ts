@@ -1,7 +1,10 @@
+import { cacheLife, cacheTag } from "next/cache";
 import { cache } from "react";
 import { supabaseClient } from "@/lib/clients/supabase-client";
 
 export const getWorkspaceUser = cache(async (domain: string) => {
+  "use cache: private";
+
   const supabase = await supabaseClient();
 
   const {
@@ -11,6 +14,9 @@ export const getWorkspaceUser = cache(async (domain: string) => {
   if (!user) {
     return null;
   }
+
+  cacheTag(`workspace-user:${domain}-${user.id}`);
+  cacheLife("max");
 
   const { data } = await supabase
     .from("workspace_users")
@@ -28,6 +34,10 @@ export const getWorkspaceUser = cache(async (domain: string) => {
 });
 
 export const getWorkspaceUsers = cache(async (domain: string) => {
+  "use cache: private";
+  cacheTag(`workspace-users:${domain}`);
+  cacheLife("max");
+
   const supabase = await supabaseClient();
 
   const { data } = await supabase

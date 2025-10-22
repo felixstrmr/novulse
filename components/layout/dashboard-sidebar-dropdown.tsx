@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronDownIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -39,9 +40,11 @@ export default function DashboardSidebarDropdown({
         <ChevronDownIcon className="size-4 shrink-0 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-58">
-        <DropdownMenuItem>
-          <SettingsIcon className="shrink-0" />
-          Settings
+        <DropdownMenuItem asChild>
+          <Link href="/dashboard/settings">
+            <SettingsIcon className="shrink-0" />
+            Settings
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuLabel>Workspaces</DropdownMenuLabel>

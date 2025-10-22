@@ -23,7 +23,7 @@ export default function ProjectsKanbanColumn({
     <div className="flex h-full flex-col" ref={setNodeRef}>
       <div
         className={cn(
-          "flex h-fit flex-col rounded-lg bg-muted p-0.5",
+          "flex h-fit flex-col rounded-lg bg-muted p-1",
           isOver && "bg-muted-foreground/15"
         )}
       >

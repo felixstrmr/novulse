@@ -5,7 +5,7 @@ import DashboardMiddleware from "@/lib/middlewares/dashboard-middleware";
 import HomeMiddleware from "@/lib/middlewares/home-middleware";
 import WorkspaceMiddleware from "@/lib/middlewares/workspace-middleware";
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const hostname = request.headers.get("host");
 
   if (hostname === `www.${env.NEXT_PUBLIC_ROOT_DOMAIN}`) {

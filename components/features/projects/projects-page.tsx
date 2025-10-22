@@ -2,12 +2,16 @@ import { BoxIcon } from "lucide-react";
 import ProjectsKanban from "@/components/features/projects/projects-kanban";
 import { getProjects } from "@/queries/project";
 import { getProjectStatuses } from "@/queries/project-status";
+import { getSubdomain } from "@/utils/domain";
 
 export default async function ProjectsPage({
-  subdomain,
+  params,
 }: {
-  subdomain: string;
+  params: Promise<{ domain: string }>;
 }) {
+  const { domain } = await params;
+  const subdomain = getSubdomain(domain);
+
   const [projects, statuses] = await Promise.all([
     getProjects(subdomain),
     getProjectStatuses(subdomain),

@@ -4,12 +4,16 @@ import DashboardSidebarDropdown from "@/components/layout/dashboard-sidebar-drop
 import DashboardSidebarNav from "@/components/layout/dashboard-sidebar-nav";
 import { getWorkspaces } from "@/queries/workspace";
 import { getWorkspaceUser } from "@/queries/workspace-user";
+import { getSubdomain } from "@/utils/domain";
 
 export default async function DashboardSidebar({
-  subdomain,
+  params,
 }: {
-  subdomain: string;
+  params: Promise<{ domain: string }>;
 }) {
+  const { domain } = await params;
+  const subdomain = getSubdomain(domain);
+
   const [workspaceUser, workspaces] = await Promise.all([
     getWorkspaceUser(subdomain),
     getWorkspaces(),

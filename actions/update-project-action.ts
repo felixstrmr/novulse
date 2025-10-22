@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { updateTag } from "next/cache";
 import z from "zod";
 import { authActionClient } from "@/lib/clients/action-client";
 import { supabaseClient } from "@/lib/clients/supabase-client";
@@ -15,8 +15,10 @@ export const updateProjectAction = authActionClient
       statusId: z.uuid().optional(),
     })
   )
-  .action(async ({ parsedInput }) => {
+  .action(async ({ parsedInput, ctx }) => {
     const { id, statusId } = parsedInput;
+    const { workspaceUser } = ctx;
+    const domain = workspaceUser.workspace.domain;
 
     const supabase = await supabaseClient();
 
@@ -28,5 +30,6 @@ export const updateProjectAction = authActionClient
       .eq("id", id)
       .throwOnError();
 
-    revalidatePath("/dashboard/projects");
+    updateTag(`projects:${domain}`);
+    updateTag(`project:${id}`);
   });

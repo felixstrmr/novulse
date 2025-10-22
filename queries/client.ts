@@ -1,7 +1,12 @@
+import { cacheLife, cacheTag } from "next/cache";
 import { cache } from "react";
 import { supabaseClient } from "@/lib/clients/supabase-client";
 
 export const getClients = cache(async (domain: string) => {
+  "use cache: private";
+  cacheTag(`clients:${domain}`);
+  cacheLife("max");
+
   const supabase = await supabaseClient();
 
   const { data } = await supabase

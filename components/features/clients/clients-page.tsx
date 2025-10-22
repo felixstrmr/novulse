@@ -2,12 +2,16 @@ import { UserIcon } from "lucide-react";
 import { ClientsTable } from "@/components/features/clients/clients-table";
 import { ClientsTableColumns } from "@/components/features/clients/clients-table-columns";
 import { getClients } from "@/queries/client";
+import { getSubdomain } from "@/utils/domain";
 
 export default async function ClientsPage({
-  subdomain,
+  params,
 }: {
-  subdomain: string;
+  params: Promise<{ domain: string }>;
 }) {
+  const { domain } = await params;
+  const subdomain = getSubdomain(domain);
+
   const clients = await getClients(subdomain);
 
   return (

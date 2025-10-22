@@ -27,7 +27,7 @@ export default function ProjectsKanbanItem({ project }: { project: Project }) {
   return (
     <button
       className={cn(
-        "relative flex w-full cursor-pointer flex-col items-start gap-3 rounded-md border bg-background shadow-xs hover:bg-zinc-50",
+        "relative flex w-full cursor-pointer flex-col items-start gap-2 rounded-md border bg-background p-3 shadow-xs hover:bg-zinc-50",
         isDragging ? "z-50" : "z-40"
       )}
       onClick={() => router.push(`/dashboard/projects/${project.id}`)}
@@ -36,29 +36,39 @@ export default function ProjectsKanbanItem({ project }: { project: Project }) {
       {...attributes}
       {...listeners}
     >
-      <div className="flex items-center gap-1.5 px-3 pt-3 text-muted-foreground">
+      <div className="flex items-center gap-1.5 text-muted-foreground">
         <UserIcon className="size-3.5" />
         <span className="text-xs">{project.client.name}</span>
       </div>
-      <div className="px-3">
+      <div className="">
         <p className="text-sm">{project.name}</p>
       </div>
-      <div className="flex items-center gap-3 px-3 pb-3 text-muted-foreground">
-        {project.start_date && (
+      <div className="flex items-center gap-3 text-muted-foreground">
+        {project.start_date ? (
           <div className="flex items-center gap-1.5">
             <CalendarIcon className="size-3.5" />
             <span className="text-xs">
               {formatRelativeTime(project.start_date)}
             </span>
           </div>
+        ) : (
+          <div className="flex items-center gap-1.5">
+            <CalendarIcon className="size-3.5" />
+            <span className="text-muted-foreground text-xs">N/A</span>
+          </div>
         )}
-        <p>-</p>
-        {project.target_date && (
+        <span>-</span>
+        {project.target_date ? (
           <div className="flex items-center gap-1.5">
             <CalendarX2Icon className="size-3.5" />
             <span className="text-xs">
               {formatRelativeTime(project.target_date)}
             </span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-1.5">
+            <CalendarX2Icon className="size-3.5" />
+            <span className="text-muted-foreground text-xs">N/A</span>
           </div>
         )}
       </div>
