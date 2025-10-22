@@ -25,4 +25,14 @@ export type Task = Tables<"tasks"> & {
   workspace: {
     domain: string;
   };
+  project: {
+    id: string;
+    name: string;
+  };
+  priority: {
+    id: string;
+    name: string;
+    icon: string;
+    color: string;
+  } | null;
 };

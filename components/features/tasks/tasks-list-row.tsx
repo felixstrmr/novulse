@@ -9,7 +9,7 @@ export default function TasksListRow({
   tasks: Task[];
 }) {
   return (
-    <div className="flex flex-col rounded-lg border bg-muted p-1">
+    <div className="flex flex-col rounded-lg border border-border/50 bg-muted/50 p-1">
       <div className="flex items-center gap-2 p-2">
         <div
           className="size-2 rounded-full"
@@ -23,7 +23,7 @@ export default function TasksListRow({
           <div className="grid grid-cols-4 px-3 py-1">
             <p className="text-muted-foreground text-xs">Name</p>
             <p className="text-muted-foreground text-xs">Type</p>
-            <p className="text-muted-foreground text-xs">Assignee</p>
+            <p className="text-muted-foreground text-xs">Project</p>
             <p className="text-muted-foreground text-xs">Due Date</p>
           </div>
           {tasks.map((task) => (
