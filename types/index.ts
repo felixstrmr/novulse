@@ -17,5 +17,5 @@ export type Project = Tables<"projects"> & {
     name: string;
     icon: string;
     color: string;
-  };
+  } | null;
 };
