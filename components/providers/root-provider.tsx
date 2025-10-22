@@ -1,3 +1,5 @@
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
   CircleAlertIcon,
   CircleCheckIcon,
@@ -24,6 +26,8 @@ export default function RootProvider({
           warning: <CircleAlertIcon className="size-4 text-yellow-600" />,
         }}
       />
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }
