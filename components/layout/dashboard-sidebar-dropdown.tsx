@@ -2,7 +2,9 @@
 
 import { ChevronDownIcon, LogOutIcon, SettingsIcon } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { signoutAction } from "@/actions/signout-action";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,7 +23,15 @@ export default function DashboardSidebarDropdown({
   workspaces: Workspace[];
   activeWorkspace: Workspace;
 }) {
+  const router = useRouter();
+
   const [isOpen, setOpen] = useState(false);
+
+  const handleSignOut = async () => {
+    await signoutAction();
+
+    router.push("/signin");
+  };
 
   return (
     <DropdownMenu onOpenChange={setOpen} open={isOpen}>
@@ -59,7 +69,7 @@ export default function DashboardSidebarDropdown({
           </DropdownMenuItem>
         ))}
         <DropdownMenuSeparator />
-        <DropdownMenuItem variant="destructive">
+        <DropdownMenuItem onClick={handleSignOut} variant="destructive">
           <LogOutIcon className="shrink-0" />
           Sign Out
         </DropdownMenuItem>

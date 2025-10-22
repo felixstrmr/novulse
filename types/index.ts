@@ -12,4 +12,10 @@ export type Project = Tables<"projects"> & {
     id: string;
     name: string;
   };
+  priority: {
+    id: string;
+    name: string;
+    icon: string;
+    color: string;
+  };
 };

@@ -14,10 +14,35 @@ export const getProjects = cache(async (domain: string) => {
     .select(`
       *,
       workspace!inner(domain),
-      client(id, name)
+      client(id, name),
+      priority(id, name, icon, color)
     `)
     .eq("workspace.domain", domain)
     .order("created_at", { ascending: false })
+    .throwOnError();
+
+  return data;
+});
+
+export const getProject = cache(async (domain: string, projectId: string) => {
+  "use cache: private";
+  cacheTag(`projects:${domain}`);
+  cacheTag(`project:${projectId}`);
+  cacheLife("max");
+
+  const supabase = await supabaseClient();
+
+  const { data } = await supabase
+    .from("projects")
+    .select(`
+      *,  
+      workspace!inner(domain),
+      client(id, name),
+      priority(id, name, icon, color)
+    `)
+    .eq("workspace.domain", domain)
+    .eq("id", projectId)
+    .maybeSingle()
     .throwOnError();
 
   return data;

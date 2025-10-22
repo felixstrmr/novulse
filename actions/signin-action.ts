@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { actionClient } from "@/lib/clients/action-client";
 import { supabaseClient } from "@/lib/clients/supabase-client";
 import { signinSchema } from "@/schemas/signin-schema";
@@ -20,4 +21,6 @@ export const signinAction = actionClient
     if (error) {
       throw error;
     }
+
+    revalidatePath("/", "layout");
   });
