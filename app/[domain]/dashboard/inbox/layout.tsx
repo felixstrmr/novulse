@@ -3,5 +3,5 @@ export default function InboxLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div>InboxLayout</div>;
+  return <div className="flex size-full">{children}</div>;
 }

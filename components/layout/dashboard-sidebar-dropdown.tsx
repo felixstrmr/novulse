@@ -1,10 +1,12 @@
 "use client";
 
-import { ChevronDownIcon, LogOutIcon, SettingsIcon } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signoutAction } from "@/actions/signout-action";
+import { SettingsIcon } from "@/components/icons";
+import { SignoutIcon } from "@/components/icons/signout-icon";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -70,7 +72,7 @@ export default function DashboardSidebarDropdown({
         ))}
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleSignOut} variant="destructive">
-          <LogOutIcon className="shrink-0" />
+          <SignoutIcon className="shrink-0" />
           Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>

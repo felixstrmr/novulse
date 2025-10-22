@@ -10,7 +10,7 @@ export default function DashboardLayout({
   params: Promise<{ domain: string }>;
 }) {
   return (
-    <div className="flex size-full gap-1 bg-muted p-1">
+    <div className="flex size-full">
       <Suspense fallback={<DashboardSidebarSkeleton />}>
         <DashboardSidebar params={params} />
       </Suspense>

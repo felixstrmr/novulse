@@ -1,6 +1,6 @@
-import { UserIcon } from "lucide-react";
 import { ClientsTable } from "@/components/features/clients/clients-table";
 import { ClientsTableColumns } from "@/components/features/clients/clients-table-columns";
+import { ClientsIcon } from "@/components/icons";
 import { getClients } from "@/queries/client";
 import { getSubdomain } from "@/utils/domain";
 
@@ -15,10 +15,10 @@ export default async function ClientsPage({
   const clients = await getClients(subdomain);
 
   return (
-    <div className="flex size-full flex-col rounded-lg bg-background">
+    <div className="flex size-full flex-col">
       <div className="border-b p-3">
         <div className="flex items-center gap-1.5">
-          <UserIcon className="size-4 text-muted-foreground" />
+          <ClientsIcon className="size-4 text-muted-foreground" />
           <h1 className="font-semibold text-xl tracking-tight">Clients</h1>
         </div>
       </div>

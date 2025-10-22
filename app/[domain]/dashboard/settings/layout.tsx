@@ -8,7 +8,7 @@ export default function SettingsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="absolute inset-0 flex size-full gap-1 bg-muted p-1">
+    <div className="absolute inset-0 flex size-full bg-background">
       <Suspense fallback={<SettingsSidebarSkeleton />}>
         <SettingsSidebar />
       </Suspense>
