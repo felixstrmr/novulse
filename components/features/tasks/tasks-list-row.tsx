@@ -24,7 +24,7 @@ export default function TasksListRow({
             <p className="text-muted-foreground text-xs">Name</p>
             <p className="text-muted-foreground text-xs">Type</p>
             <p className="text-muted-foreground text-xs">Project</p>
-            <p className="text-muted-foreground text-xs">Due Date</p>
+            <p className="text-muted-foreground text-xs">Target Date</p>
           </div>
           {tasks.map((task) => (
             <TasksListItem key={task.id} task={task} />
