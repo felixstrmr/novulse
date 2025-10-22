@@ -70,18 +70,18 @@ export default function DashboardSidebarNav() {
   return (
     <div className="flex h-full flex-col justify-between">
       <div className="space-y-3">
-        <div className="space-y-0.5">
+        <div className="space-y-1">
           {itemsFirst.map((item) => (
             <NavItem key={item.href} {...item} />
           ))}
         </div>
-        <div className="space-y-0.5">
+        <div className="space-y-1">
           {itemsSecond.map((item) => (
             <NavItem key={item.href} {...item} />
           ))}
         </div>
       </div>
-      <div className="space-y-0.5">
+      <div className="space-y-1">
         {itemsThird.map((item) => (
           <NavItem key={item.href} {...item} />
         ))}

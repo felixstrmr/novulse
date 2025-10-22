@@ -58,7 +58,7 @@ export default function ProjectsKanban({
 
   return (
     <DndContext id={id} onDragEnd={handleDragEnd} sensors={sensors}>
-      <div className="flex size-full gap-2 overflow-x-auto">
+      <div className="flex size-full gap-1.5 overflow-x-auto">
         {statuses.map((status) => (
           <ProjectsKanbanColumn
             key={status.id}

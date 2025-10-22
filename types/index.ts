@@ -3,6 +3,7 @@ import type { Tables } from "@/types/supabase";
 export type Workspace = Tables<"workspaces">;
 export type Client = Tables<"clients">;
 export type ProjectStatus = Tables<"project_statuses">;
+export type TaskStatus = Tables<"task_statuses">;
 
 export type Project = Tables<"projects"> & {
   workspace: {
@@ -18,4 +19,10 @@ export type Project = Tables<"projects"> & {
     icon: string;
     color: string;
   } | null;
+};
+
+export type Task = Tables<"tasks"> & {
+  workspace: {
+    domain: string;
+  };
 };
