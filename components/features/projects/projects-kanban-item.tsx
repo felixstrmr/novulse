@@ -44,7 +44,6 @@ export default function ProjectsKanbanItem({ project }: { project: Project }) {
         </div>
         {project.priority && (
           <ProjectPriorityIcon
-            className="size-3.5"
             icon={project.priority.icon}
             style={{ color: project.priority.color }}
           />
