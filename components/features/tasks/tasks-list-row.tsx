@@ -9,7 +9,7 @@ export default function TasksListRow({
   tasks: Task[];
 }) {
   return (
-    <div className="flex flex-col rounded-lg border border-border/50 bg-muted/50 p-1">
+    <div className="flex flex-col rounded-lg bg-muted p-1">
       <div className="flex items-center gap-2 p-2">
         <div
           className="size-2 rounded-full"
