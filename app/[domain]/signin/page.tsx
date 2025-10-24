@@ -4,7 +4,7 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Page() {
   return (
-    <div className="flex size-full items-center justify-center bg-muted/10">
+    <div className="flex size-full items-center justify-center bg-muted/15">
       <div className="rounded-xl border bg-background p-8 shadow-lg">
         <div className={buttonVariants({ variant: "secondary", size: "icon" })}>
           <NovulseIcon />

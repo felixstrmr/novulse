@@ -1,0 +1,9 @@
+import ReturnButton from "@/components/buttons/return-button";
+
+export default function TaskSidebar() {
+  return (
+    <aside className="flex min-w-96 max-w-96 flex-col gap-3 rounded-lg bg-background p-3">
+      <ReturnButton />
+    </aside>
+  );
+}

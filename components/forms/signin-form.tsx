@@ -46,6 +46,7 @@ export default function SigninForm({ redirectTo }: { redirectTo: string }) {
         id: "signin-form",
       });
       router.push(redirectTo);
+      form.reset();
     },
   });
 

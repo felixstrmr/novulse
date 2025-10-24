@@ -15,7 +15,7 @@ export default function TasksListItem({ task }: { task: Task }) {
       type="button"
     >
       <p className="text-sm">{task.name}</p>
-      <p className="text-sm capitalize">{task.type}</p>
+      <p className="text-sm">{task.description ?? "-"}</p>
       <div className="flex items-center gap-1.5">
         <ProjectsIcon className="size-4 text-muted-foreground" />
         <p className="text-sm">{task.project.name}</p>

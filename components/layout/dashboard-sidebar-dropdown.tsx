@@ -32,7 +32,7 @@ export default function DashboardSidebarDropdown({
   const handleSignOut = async () => {
     await signoutAction();
 
-    router.push("/signin");
+    router.refresh();
   };
 
   return (
