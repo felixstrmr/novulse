@@ -18,7 +18,7 @@ export default async function TasksPage({
   ]);
 
   return (
-    <div className="flex size-full flex-col">
+    <div className="flex size-full flex-col rounded-lg bg-background">
       <div className="border-b p-3">
         <div className="flex items-center gap-1.5">
           <TasksIcon className="size-4 text-muted-foreground" />

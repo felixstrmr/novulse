@@ -18,7 +18,7 @@ export default async function ProjectsPage({
   ]);
 
   return (
-    <div className="flex size-full flex-col overflow-hidden">
+    <div className="flex size-full flex-col overflow-hidden rounded-lg bg-background">
       <div className="border-b p-3">
         <div className="flex items-center gap-1.5">
           <ProjectsIcon className="size-4 text-muted-foreground" />
