@@ -10,7 +10,7 @@ export default function TasksListItem({ task }: { task: Task }) {
 
   return (
     <button
-      className="grid w-full cursor-pointer grid-cols-4 place-items-start border bg-background p-3 shadow-xs first:rounded-t-md last:rounded-b-md even:border-t-0 hover:bg-zinc-50"
+      className="grid w-full cursor-pointer grid-cols-4 place-items-start border bg-background p-3 shadow-xs first:rounded-t-md last:rounded-b-md only:rounded-md even:border-t-0 hover:bg-zinc-50"
       onClick={() => router.push(`/dashboard/tasks/${task.id}`)}
       type="button"
     >
