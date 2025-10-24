@@ -6,6 +6,7 @@ import {
   CircleXIcon,
   InfoIcon,
 } from "lucide-react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "@/components/ui/sonner";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -15,7 +16,7 @@ export default function RootProvider({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <NuqsAdapter>
       {children}
       <Toaster
         icons={{
@@ -28,6 +29,6 @@ export default function RootProvider({
       />
       <Analytics />
       <SpeedInsights />
-    </>
+    </NuqsAdapter>
   );
 }

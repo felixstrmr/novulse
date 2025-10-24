@@ -14,7 +14,7 @@ export const getTasks = cache(async (domain: string) => {
     .select(`
       *,
       workspace!inner(domain),
-      project(id, name),
+      project(id, name, client),
       priority(id, name, icon, color)
     `)
     .eq("workspace.domain", domain)

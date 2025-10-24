@@ -28,6 +28,7 @@ export type Task = Tables<"tasks"> & {
   project: {
     id: string;
     name: string;
+    client: string;
   };
   priority: {
     id: string;

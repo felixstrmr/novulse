@@ -1,5 +1,8 @@
+import TasksHeader from "@/components/features/tasks/tasks-header";
 import TasksList from "@/components/features/tasks/tasks-list";
 import { TasksIcon } from "@/components/icons";
+import { getClients } from "@/queries/client";
+import { getProjects } from "@/queries/project";
 import { getTasks } from "@/queries/task";
 import { getTaskStatuses } from "@/queries/task-status";
 import { getSubdomain } from "@/utils/domain";
@@ -12,9 +15,11 @@ export default async function TasksPage({
   const { domain } = await params;
   const subdomain = getSubdomain(domain);
 
-  const [tasks, statuses] = await Promise.all([
+  const [tasks, statuses, clients, projects] = await Promise.all([
     getTasks(subdomain),
     getTaskStatuses(subdomain),
+    getClients(subdomain),
+    getProjects(subdomain),
   ]);
 
   return (
@@ -25,7 +30,8 @@ export default async function TasksPage({
           <h1 className="font-semibold text-xl tracking-tight">Tasks</h1>
         </div>
       </div>
-      <div className="size-full p-3">
+      <div className="flex size-full flex-col gap-3 p-3">
+        <TasksHeader clients={clients} projects={projects} />
         <TasksList statuses={statuses} tasks={tasks} />
       </div>
     </div>
