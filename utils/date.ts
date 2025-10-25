@@ -5,6 +5,7 @@ import {
   differenceInMonths,
   differenceInWeeks,
   differenceInYears,
+  format,
 } from "date-fns";
 
 const DAYS_IN_WEEK = 7;
@@ -57,4 +58,14 @@ export function formatRelativeTime(date: Date | string): string {
   const yearsDiff = differenceInYears(targetDate, now);
   const absoluteYears = Math.abs(yearsDiff);
   return `${prefix}${absoluteYears}y${suffix}`;
+}
+
+/**
+ * Formats a date to ISO date string (YYYY-MM-DD) for consistent comparison
+ * @param date - Date object or date string
+ * @returns ISO date string in YYYY-MM-DD format
+ */
+export function formatToIsoDate(date: Date | string): string {
+  const targetDate = typeof date === "string" ? new Date(date) : date;
+  return format(targetDate, "yyyy-MM-dd");
 }

@@ -1,9 +1,47 @@
 "use client";
 
-import { parseAsString, useQueryStates } from "nuqs";
+import { parseAsIsoDate, parseAsString, useQueryStates } from "nuqs";
 import { useMemo } from "react";
 import TasksListRow from "@/components/features/tasks/tasks-list-row";
+import { TasksIcon } from "@/components/icons";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import type { Task, TaskStatus } from "@/types";
+import { formatToIsoDate } from "@/utils/date";
+
+function matchesFilters(
+  task: Task,
+  filters: {
+    client: string | null;
+    project: string | null;
+    targetDate: Date | null;
+  }
+) {
+  if (filters.client && task.project.client !== filters.client) {
+    return false;
+  }
+
+  if (filters.project && task.project.id !== filters.project) {
+    return false;
+  }
+
+  if (filters.targetDate) {
+    const filterDateString = formatToIsoDate(filters.targetDate);
+    const taskDateString = task.target_date
+      ? formatToIsoDate(task.target_date)
+      : null;
+    if (taskDateString !== filterDateString) {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 export default function TasksList({
   tasks,
@@ -15,35 +53,38 @@ export default function TasksList({
   const [filters] = useQueryStates({
     client: parseAsString,
     project: parseAsString,
+    targetDate: parseAsIsoDate,
   });
 
   const filteredTasks = useMemo(() => {
-    const hasClientFilter = Boolean(filters.client);
-    const hasProjectFilter = Boolean(filters.project);
+    const hasAnyFilter = Boolean(
+      filters.client || filters.project || filters.targetDate
+    );
 
-    if (!(hasClientFilter || hasProjectFilter)) {
+    if (!hasAnyFilter) {
       return tasks;
     }
 
-    return tasks.filter((task) => {
-      if (hasClientFilter && hasProjectFilter) {
-        return (
-          task.project.client === filters.client &&
-          task.project.id === filters.project
-        );
-      }
-
-      if (hasClientFilter) {
-        return task.project.client === filters.client;
-      }
-
-      if (hasProjectFilter) {
-        return task.project.id === filters.project;
-      }
-
-      return true;
-    });
+    return tasks.filter((task) => matchesFilters(task, filters));
   }, [tasks, filters]);
+
+  if (filteredTasks.length === 0) {
+    return (
+      <div className="flex h-96 w-full items-center justify-center">
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <TasksIcon />
+            </EmptyMedia>
+            <EmptyTitle>No tasks found</EmptyTitle>
+            <EmptyDescription>
+              Create a new task to get started
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-3">
