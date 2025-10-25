@@ -1,10 +1,11 @@
 "use client";
 
 import {
+  CalendarIcon,
   CheckIcon,
-  ChevronDownIcon,
   CircleXIcon,
   SearchIcon,
+  UserIcon,
 } from "lucide-react";
 import { parseAsIsoDate, parseAsString, useQueryStates } from "nuqs";
 import { useState } from "react";
@@ -41,23 +42,23 @@ export default function TasksHeader({ clients }: { clients: Client[] }) {
     <div className="flex justify-between">
       <div>
         <div className="relative w-64">
-          <SearchIcon className="-translate-y-1/2 absolute top-1/2 left-2 size-4 text-muted-foreground" />
+          <SearchIcon className="-translate-y-1/2 absolute top-1/2 left-2 size-3.5 text-muted-foreground" />
           <Input
-            className="bg-background pl-8"
+            className="h-7 bg-background pl-7"
             placeholder="Search tasks..."
             type="search"
           />
         </div>
       </div>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
         <Popover onOpenChange={setTargetDateOpen} open={isTargetDateOpen}>
           <PopoverTrigger asChild>
-            <Button className="p-0" variant="outline">
+            <Button className="p-0" size="sm" variant="outline">
               {filters.targetDate && (
                 <span className="flex items-center gap-1 pr-1 pl-2">
                   {filters.targetDate.toLocaleDateString()}
                   <div
-                    className="pointer-events-auto flex size-6 cursor-pointer items-center justify-center rounded-sm text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
+                    className="pointer-events-auto flex size-5 cursor-pointer items-center justify-center rounded-sm text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -79,21 +80,21 @@ export default function TasksHeader({ clients }: { clients: Client[] }) {
                     role="button"
                     tabIndex={0}
                   >
-                    <CircleXIcon className="size-4 text-muted-foreground" />
+                    <CircleXIcon className="size-3.5 text-muted-foreground" />
                   </div>
                 </span>
               )}
               {!filters.targetDate && (
                 <span className="flex items-center gap-1.5 px-2">
+                  <CalendarIcon className="size-3.5 text-muted-foreground" />
                   Target date
-                  <ChevronDownIcon className="size-4 opacity-50" />
                 </span>
               )}
             </Button>
           </PopoverTrigger>
           <PopoverContent align="end" className="w-auto overflow-hidden p-0">
             <Calendar
-              captionLayout="dropdown"
+              captionLayout="label"
               mode="single"
               onSelect={(date) => {
                 setFilters({
@@ -108,12 +109,12 @@ export default function TasksHeader({ clients }: { clients: Client[] }) {
         </Popover>
         <Popover onOpenChange={setClientOpen} open={isClientOpen}>
           <PopoverTrigger asChild>
-            <Button className="p-0" variant="outline">
+            <Button className="p-0" size="sm" variant="outline">
               {filters.client && (
                 <span className="flex items-center gap-1 pr-1 pl-2">
                   {clients.find((client) => client.id === filters.client)?.name}
                   <div
-                    className="pointer-events-auto flex size-6 cursor-pointer items-center justify-center rounded-sm text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
+                    className="pointer-events-auto flex size-5 cursor-pointer items-center justify-center rounded-sm text-muted-foreground hover:bg-foreground/10 hover:text-foreground"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -135,14 +136,14 @@ export default function TasksHeader({ clients }: { clients: Client[] }) {
                     role="button"
                     tabIndex={0}
                   >
-                    <CircleXIcon className="size-4 text-muted-foreground" />
+                    <CircleXIcon className="size-3.5 text-muted-foreground" />
                   </div>
                 </span>
               )}
               {!filters.client && (
                 <span className="flex items-center gap-1.5 px-2">
+                  <UserIcon className="size-3.5 text-muted-foreground" />
                   Client
-                  <ChevronDownIcon className="size-4 opacity-50" />
                 </span>
               )}
             </Button>

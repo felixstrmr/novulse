@@ -22,9 +22,9 @@ export default function TasksListRow({
         <div className="relative h-full">
           <div className="grid grid-cols-4 px-3 py-1.5">
             <p className="text-muted-foreground text-xs">Name</p>
-            <p className="text-muted-foreground text-xs">Description</p>
             <p className="text-muted-foreground text-xs">Project</p>
             <p className="text-muted-foreground text-xs">Target Date</p>
+            <p className="text-muted-foreground text-xs">Assignees</p>
           </div>
           <div className="flex flex-col">
             {tasks.map((task) => (

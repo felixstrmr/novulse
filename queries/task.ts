@@ -15,7 +15,8 @@ export const getTasks = cache(async (domain: string) => {
       *,
       workspace!inner(domain),
       project(id, name, client),
-      priority(id, name, icon, color)
+      priority(id, name, icon, color),
+      task_users(user(id, display_name, avatar))
     `)
     .eq("workspace.domain", domain)
     .order("created_at", { ascending: false })

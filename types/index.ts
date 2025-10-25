@@ -36,4 +36,11 @@ export type Task = Tables<"tasks"> & {
     icon: string;
     color: string;
   } | null;
+  task_users: {
+    user: {
+      id: string;
+      display_name: string | null;
+      avatar: string | null;
+    };
+  }[];
 };
