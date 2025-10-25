@@ -1,7 +1,16 @@
 "use client";
 
+import {
+  DndContext,
+  type DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import { useOptimisticAction } from "next-safe-action/hooks";
 import { parseAsIsoDate, parseAsString, useQueryStates } from "nuqs";
-import { useMemo } from "react";
+import { useId, useMemo } from "react";
+import { updateTaskAction } from "@/actions/update-task-action";
 import TasksListRow from "@/components/features/tasks/tasks-list-row";
 import { TasksIcon } from "@/components/icons";
 import {
@@ -50,6 +59,23 @@ export default function TasksList({
   tasks: Task[];
   statuses: TaskStatus[];
 }) {
+  const { execute, optimisticState: optimisticTasks } = useOptimisticAction(
+    updateTaskAction,
+    {
+      currentState: tasks,
+      updateFn: (state, input) =>
+        state.map((task) => {
+          if (task.id === input.id && input.statusId) {
+            return {
+              ...task,
+              status: input.statusId,
+            };
+          }
+          return task;
+        }),
+    }
+  );
+
   const [filters] = useQueryStates({
     client: parseAsString,
     project: parseAsString,
@@ -62,11 +88,30 @@ export default function TasksList({
     );
 
     if (!hasAnyFilter) {
-      return tasks;
+      return optimisticTasks;
     }
 
-    return tasks.filter((task) => matchesFilters(task, filters));
-  }, [tasks, filters]);
+    return optimisticTasks.filter((task) => matchesFilters(task, filters));
+  }, [optimisticTasks, filters]);
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { over, active } = event;
+
+    if (over && active.data.current?.task.status !== over.id) {
+      execute({
+        id: active.id as string,
+        statusId: over.id as string,
+      });
+    }
+  }
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 10 },
+    })
+  );
+
+  const id = useId();
 
   if (filteredTasks.length === 0) {
     return (
@@ -87,7 +132,7 @@ export default function TasksList({
   }
 
   return (
-    <div className="flex flex-col gap-3">
+    <DndContext id={id} onDragEnd={handleDragEnd} sensors={sensors}>
       <div className="flex flex-col gap-1.5">
         {statuses.map((status) => (
           <TasksListRow
@@ -97,6 +142,6 @@ export default function TasksList({
           />
         ))}
       </div>
-    </div>
+    </DndContext>
   );
 }
