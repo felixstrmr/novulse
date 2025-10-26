@@ -8,9 +8,18 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { useOptimisticAction } from "next-safe-action/hooks";
-import { useId } from "react";
+import { parseAsString, useQueryStates } from "nuqs";
+import { useId, useMemo } from "react";
 import { updateProjectAction } from "@/actions/update-project-action";
 import ProjectsKanbanColumn from "@/components/features/projects/projects-kanban-column";
+import { ProjectsIcon } from "@/components/icons";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/components/ui/empty";
 import type { Project, ProjectStatus } from "@/types";
 
 export default function ProjectsKanban({
@@ -20,10 +29,22 @@ export default function ProjectsKanban({
   statuses: ProjectStatus[];
   projects: Project[];
 }) {
+  const [filters] = useQueryStates({
+    client: parseAsString,
+  });
+
+  const filteredProjects = useMemo(
+    () =>
+      projects.filter(
+        (project) => project.client.id === filters.client || !filters.client
+      ),
+    [projects, filters.client]
+  );
+
   const { execute, optimisticState: optimisticProjects } = useOptimisticAction(
     updateProjectAction,
     {
-      currentState: projects,
+      currentState: filteredProjects,
       updateFn: (state, input) =>
         state.map((project) => {
           if (project.id === input.id && input.statusId) {
@@ -55,6 +76,24 @@ export default function ProjectsKanban({
   );
 
   const id = useId();
+
+  if (filteredProjects.length === 0) {
+    return (
+      <div className="flex h-96 w-full items-center justify-center">
+        <Empty>
+          <EmptyHeader>
+            <EmptyMedia variant="icon">
+              <ProjectsIcon />
+            </EmptyMedia>
+            <EmptyTitle>No projects found</EmptyTitle>
+            <EmptyDescription>
+              Create a new project to get started
+            </EmptyDescription>
+          </EmptyHeader>
+        </Empty>
+      </div>
+    );
+  }
 
   return (
     <DndContext id={id} onDragEnd={handleDragEnd} sensors={sensors}>

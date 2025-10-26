@@ -28,7 +28,7 @@ export default function TasksListItem({ task }: { task: Task }) {
   return (
     <button
       className={cn(
-        "grid w-full cursor-pointer grid-cols-4 place-items-start items-center border bg-background p-3 shadow-xs first:rounded-t-md last:rounded-b-md only:rounded-md even:border-t-0 hover:bg-zinc-50",
+        "grid w-full cursor-pointer grid-cols-4 place-items-start items-center border bg-background p-3 shadow-xs first:rounded-t-md last:rounded-b-md only:rounded-md even:border-t-0 hover:bg-zinc-50 dark:hover:bg-zinc-900",
         isDragging ? "z-50" : "z-40"
       )}
       onClick={() => router.push(`/dashboard/tasks/${task.id}`)}
@@ -56,10 +56,10 @@ export default function TasksListItem({ task }: { task: Task }) {
       <div className="-translate-x-1.5 flex items-center first:translate-x-0">
         {task.task_users.map((user) => (
           <div
-            className="flex size-6 shrink-0 items-center justify-center rounded-full border bg-muted"
+            className="flex size-5 shrink-0 items-center justify-center rounded-full border bg-muted"
             key={user.user.id}
           >
-            <p className="text-muted-foreground text-xs">
+            <p className="text-[10px] text-muted-foreground">
               {user.user.display_name?.charAt(0).toUpperCase()}
             </p>
           </div>

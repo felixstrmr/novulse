@@ -28,7 +28,7 @@ export default function ProjectsKanbanItem({ project }: { project: Project }) {
   return (
     <button
       className={cn(
-        "relative flex w-full cursor-pointer flex-col items-start gap-2 rounded-md border bg-background p-3 shadow-xs hover:bg-zinc-50",
+        "relative flex w-full cursor-pointer flex-col items-start gap-2 rounded-md border bg-background p-3 shadow-xs hover:bg-zinc-50 dark:hover:bg-zinc-900",
         isDragging ? "z-50" : "z-40"
       )}
       onClick={() => router.push(`/dashboard/projects/${project.id}`)}
