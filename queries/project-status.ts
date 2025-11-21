@@ -1,0 +1,19 @@
+import { cacheLife, cacheTag } from "next/cache";
+import { supabaseClient } from "@/lib/clients/supabase-client";
+
+export async function getProjectStatuses(domain: string) {
+  "use cache: private";
+  cacheLife("max");
+  cacheTag(`project-statuses:${domain}`);
+
+  const supabase = await supabaseClient();
+
+  const { data } = await supabase
+    .from("project_statuses")
+    .select("*, workspace!inner(domain)")
+    .eq("workspace.domain", domain)
+    .order("created_at", { ascending: false })
+    .throwOnError();
+
+  return data;
+}
