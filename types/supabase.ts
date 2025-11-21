@@ -37,26 +37,39 @@ export type Database = {
       clients: {
         Row: {
           created_at: string
+          created_by: string | null
           id: string
+          is_active: boolean
           name: string
           slug: string
           workspace: string
         }
         Insert: {
           created_at?: string
+          created_by?: string | null
           id?: string
+          is_active?: boolean
           name: string
           slug: string
           workspace: string
         }
         Update: {
           created_at?: string
+          created_by?: string | null
           id?: string
+          is_active?: boolean
           name?: string
           slug?: string
           workspace?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "clients_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "clients_workspace_fkey"
             columns: ["workspace"]
@@ -68,21 +81,33 @@ export type Database = {
       }
       project_statuses: {
         Row: {
+          color: string
           created_at: string
+          icon: string
           id: string
+          is_default: boolean
           name: string
+          order: number
           workspace: string
         }
         Insert: {
+          color: string
           created_at?: string
+          icon: string
           id?: string
+          is_default?: boolean
           name: string
+          order: number
           workspace: string
         }
         Update: {
+          color?: string
           created_at?: string
+          icon?: string
           id?: string
+          is_default?: boolean
           name?: string
+          order?: number
           workspace?: string
         }
         Relationships: [
@@ -150,6 +175,130 @@ export type Database = {
           },
           {
             foreignKeyName: "projects_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      task_statuses: {
+        Row: {
+          color: string
+          created_at: string
+          icon: string
+          id: string
+          is_default: boolean
+          name: string
+          order: number
+          workspace: string
+        }
+        Insert: {
+          color: string
+          created_at?: string
+          icon: string
+          id?: string
+          is_default?: boolean
+          name: string
+          order: number
+          workspace: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          icon?: string
+          id?: string
+          is_default?: boolean
+          name?: string
+          order?: number
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "task_statuses_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          project: string
+          status: string
+          workspace: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          project: string
+          status: string
+          workspace: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          project?: string
+          status?: string
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_client_fkey"
+            columns: ["project"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_project_fkey"
+            columns: ["project"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_status_fkey"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "project_statuses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_status_fkey1"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "task_statuses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_workspace_fkey1"
             columns: ["workspace"]
             isOneToOne: false
             referencedRelation: "workspaces"

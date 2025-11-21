@@ -1,17 +1,16 @@
 "use client";
 
-import {
-  BoxIcon,
-  CogIcon,
-  FileIcon,
-  HouseIcon,
-  InboxIcon,
-  ListTodoIcon,
-  type LucideIcon,
-  UserIcon,
-} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  ClientIcon,
+  DashboardIcon,
+  FileIcon,
+  InboxIcon,
+  ProjectIcon,
+  SettingsIcon,
+  TaskIcon,
+} from "@/components/icons";
 import { cn } from "@/utils/ui";
 
 export default function DashboardSidebarNavigation() {
@@ -21,7 +20,7 @@ export default function DashboardSidebarNavigation() {
     {
       name: "Dashboard",
       href: "/dashboard",
-      icon: HouseIcon,
+      icon: DashboardIcon,
       isActive: pathname === "/dashboard",
     },
     {
@@ -36,19 +35,19 @@ export default function DashboardSidebarNavigation() {
     {
       name: "Clients",
       href: "/dashboard/clients",
-      icon: UserIcon,
+      icon: ClientIcon,
       isActive: pathname.startsWith("/dashboard/clients"),
     },
     {
       name: "Projects",
       href: "/dashboard/projects",
-      icon: BoxIcon,
+      icon: ProjectIcon,
       isActive: pathname.startsWith("/dashboard/projects"),
     },
     {
       name: "Tasks",
       href: "/dashboard/tasks",
-      icon: ListTodoIcon,
+      icon: TaskIcon,
       isActive: pathname.startsWith("/dashboard/tasks"),
     },
     {
@@ -63,7 +62,7 @@ export default function DashboardSidebarNavigation() {
     {
       name: "Settings",
       href: "/dashboard/settings",
-      icon: CogIcon,
+      icon: SettingsIcon,
       isActive: pathname.startsWith("/dashboard/settings"),
     },
   ];
@@ -93,14 +92,13 @@ export default function DashboardSidebarNavigation() {
 }
 
 function NavigationItem({
-  name,
   href,
   icon: Icon,
   isActive,
 }: {
   name: string;
   href: string;
-  icon: LucideIcon;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   isActive: boolean;
 }) {
   return (
@@ -113,7 +111,7 @@ function NavigationItem({
       )}
       href={href}
     >
-      <Icon className="size-4 shrink-0 text-muted-foreground" />
+      <Icon className="size-4 shrink-0" />
     </Link>
   );
 }

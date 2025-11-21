@@ -12,7 +12,7 @@ export async function getProjectStatuses(domain: string) {
     .from("project_statuses")
     .select("*, workspace!inner(domain)")
     .eq("workspace.domain", domain)
-    .order("created_at", { ascending: false })
+    .order("order", { ascending: true })
     .throwOnError();
 
   return data;

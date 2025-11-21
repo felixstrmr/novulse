@@ -1,4 +1,5 @@
 import ProjectsKanban from "@/components/features/projects/projects-kanban";
+import { ProjectIcon } from "@/components/icons";
 import { getProjects } from "@/queries/project";
 import { getProjectStatuses } from "@/queries/project-status";
 import { getUniqueDomain } from "@/utils/domain";
@@ -19,9 +20,12 @@ export default async function ProjectsPage({
   return (
     <div className="flex size-full flex-col rounded-xl bg-background">
       <div className="flex items-center justify-between border-b p-3">
-        <h1 className="flex h-8 items-center font-semibold text-xl tracking-tight">
-          Projects
-        </h1>
+        <div className="flex items-center gap-2">
+          <ProjectIcon className="size-4 text-muted-foreground" />
+          <h1 className="flex h-8 items-center font-semibold text-xl tracking-tight">
+            Projects
+          </h1>
+        </div>
       </div>
       <div className="flex size-full p-3">
         <ProjectsKanban projects={projects} statuses={statuses} />

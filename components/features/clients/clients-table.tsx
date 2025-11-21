@@ -32,16 +32,13 @@ export function ClientsTable<TData, TValue>({
   });
 
   return (
-    <div className="overflow-hidden">
+    <div className="w-full overflow-hidden rounded-lg bg-muted p-0.5">
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow className="bg-accent/50" key={headerGroup.id}>
+            <TableRow className="border-none" key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <TableHead
-                  className="text-muted-foreground first:pl-3 last:pr-3"
-                  key={header.id}
-                >
+                <TableHead className="text-muted-foreground" key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
@@ -57,11 +54,15 @@ export function ClientsTable<TData, TValue>({
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
+                className="bg-background hover:bg-background"
                 data-state={row.getIsSelected() && "selected"}
                 key={row.id}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell className="first:pl-3 last:pr-3" key={cell.id}>
+                  <TableCell
+                    className="first:rounded-l-md last:rounded-r-md"
+                    key={cell.id}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}

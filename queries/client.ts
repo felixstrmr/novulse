@@ -17,3 +17,21 @@ export async function getClients(domain: string) {
 
   return data;
 }
+
+export async function getClient(domain: string, clientId: string) {
+  "use cache: private";
+  cacheLife("max");
+  cacheTag(`client:${domain}:${clientId}`);
+
+  const supabase = await supabaseClient();
+
+  const { data } = await supabase
+    .from("clients")
+    .select("*, workspace!inner(domain)")
+    .eq("workspace.domain", domain)
+    .eq("id", clientId)
+    .maybeSingle()
+    .throwOnError();
+
+  return data;
+}
