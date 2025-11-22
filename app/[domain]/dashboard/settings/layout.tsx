@@ -9,13 +9,15 @@ export const metadata: Metadata = {
 
 export default function SettingsLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ domain: string }>;
 }) {
   return (
     <div className="flex size-full gap-1">
       <Suspense fallback={<SettingsSidebarSkeleton />}>
-        <SettingsSidebar />
+        <SettingsSidebar params={params} />
       </Suspense>
       <div className="flex size-full rounded-xl bg-background">{children}</div>
     </div>

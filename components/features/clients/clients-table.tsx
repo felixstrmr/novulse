@@ -6,8 +6,8 @@ import type { Client } from "@/types";
 
 export default function ClientsTable({ clients }: { clients: Client[] }) {
   return (
-    <div className="rounded-lg bg-muted p-1">
-      <div className="grid grid-cols-4 p-3 text-muted-foreground text-sm">
+    <div className="rounded-lg bg-muted p-0.5">
+      <div className="grid grid-cols-4 px-2.5 py-2 text-muted-foreground text-sm">
         <div>Name</div>
         <div>Status</div>
         <div>Created</div>
@@ -16,7 +16,7 @@ export default function ClientsTable({ clients }: { clients: Client[] }) {
       <div className="rounded-md border">
         {clients.map((client) => (
           <Link
-            className="grid grid-cols-4 items-center border-b bg-background p-3 text-sm first:rounded-t-md last:rounded-b-md last:border-b-0 hover:bg-zinc-50"
+            className="grid grid-cols-4 items-center border-b bg-background p-2.5 text-sm first:rounded-t-md last:rounded-b-md last:border-b-0 hover:bg-zinc-50"
             href={`/dashboard/clients/${client.id}`}
             key={client.id}
           >

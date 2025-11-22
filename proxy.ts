@@ -33,7 +33,13 @@ export async function proxy(request: NextRequest) {
             request,
           });
           for (const { name, value } of cookiesToSet) {
-            response.cookies.set(name, value);
+            response.cookies.set(name, value, {
+              domain: `.${env.NEXT_PUBLIC_ROOT_DOMAIN}`,
+              httpOnly: true,
+              secure: env.NODE_ENV === "production",
+              sameSite: "lax",
+              path: "/",
+            });
           }
         },
       },

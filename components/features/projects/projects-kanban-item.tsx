@@ -28,7 +28,7 @@ export default function ProjectsKanbanItem({ project }: { project: Project }) {
       type="button"
       {...attributes}
       {...listeners}
-      className="flex min-w-64 max-w-64 cursor-pointer flex-col items-start truncate rounded-md border bg-background p-3 shadow-xs"
+      className="flex min-w-64 max-w-64 cursor-pointer flex-col items-start truncate rounded-md border bg-background p-3 shadow-xs hover:bg-zinc-50"
     >
       {project.name}
     </button>

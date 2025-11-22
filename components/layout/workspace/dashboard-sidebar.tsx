@@ -15,7 +15,7 @@ export default async function DashbaordSidebar({
 
   const workspaceUser = await getWorkspaceUser(uniqueDomain);
 
-  if (!workspaceUser) {
+  if (!workspaceUser || workspaceUser.role === "client") {
     redirect("/denied");
   }
 

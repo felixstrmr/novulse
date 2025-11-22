@@ -52,8 +52,8 @@ export default function AddClientForm({
       toast.success("Client added successfully", {
         id: "add-client-form",
       });
-      setOpen(false);
       router.push(`/dashboard/clients/${client.id}`);
+      setOpen(false);
     },
   });
 

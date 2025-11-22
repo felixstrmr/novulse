@@ -17,7 +17,13 @@ export async function supabaseClient() {
         setAll(cookiesToSet) {
           try {
             for (const { name, value } of cookiesToSet) {
-              cookieStore.set(name, value);
+              cookieStore.set(name, value, {
+                domain: `.${env.NEXT_PUBLIC_ROOT_DOMAIN}`,
+                httpOnly: true,
+                secure: env.NODE_ENV === "production",
+                sameSite: "lax",
+                path: "/",
+              });
             }
           } catch {
             // The `setAll` method was called from a Server Component.
