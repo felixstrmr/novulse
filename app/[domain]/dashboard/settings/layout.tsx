@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import SettingsSidebar from "@/components/layout/workspace/settings-sidebar";
 import SettingsSidebarSkeleton from "@/components/layout/workspace/settings-sidebar-skeleton";
+
+export const metadata: Metadata = {
+  title: "Novulse • Settings",
+};
 
 export default function SettingsLayout({
   children,

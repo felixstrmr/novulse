@@ -1,10 +1,9 @@
 import AddClientDialog from "@/components/dialogs/add-client-dialog";
 import ClientsPageHeader from "@/components/features/clients/clients-page-header";
-import { ClientsTable } from "@/components/features/clients/clients-table";
-import { ClientsTableColumns } from "@/components/features/clients/clients-table-columns";
+import ClientsTable from "@/components/features/clients/clients-table";
 import { ClientIcon } from "@/components/icons";
 import { Input } from "@/components/ui/input";
-import { getClients } from "@/queries/client";
+import { getClients } from "@/queries/clients";
 import { getUniqueDomain } from "@/utils/domain";
 
 export default async function ClientsPage({
@@ -34,7 +33,7 @@ export default async function ClientsPage({
             <Input className="min-w-64 max-w-64" placeholder="Search..." />
             <AddClientDialog />
           </div>
-          <ClientsTable columns={ClientsTableColumns} data={clients} />
+          <ClientsTable clients={clients} />
         </div>
       </div>
     </div>

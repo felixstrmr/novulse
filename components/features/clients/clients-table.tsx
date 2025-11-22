@@ -1,82 +1,34 @@
-"use client";
+import { format } from "date-fns";
+import Link from "next/link";
+import Avatar from "@/components/common/avatar";
+import ClientStatusBadge from "@/components/common/client-status-badge";
+import type { Client } from "@/types";
 
-import {
-  type ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
-type ClientsTableProps<TData, TValue> = {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
-};
-
-export function ClientsTable<TData, TValue>({
-  columns,
-  data,
-}: ClientsTableProps<TData, TValue>) {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
+export default function ClientsTable({ clients }: { clients: Client[] }) {
   return (
-    <div className="w-full overflow-hidden rounded-lg bg-muted p-0.5">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow className="border-none" key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead className="text-muted-foreground" key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                className="border-none bg-background hover:bg-background"
-                data-state={row.getIsSelected() && "selected"}
-                key={row.id}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell
-                    className="first:rounded-tl-md last:rounded-tr-md"
-                    key={cell.id}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell className="h-24 text-center" colSpan={columns.length}>
-                No results.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+    <div className="rounded-lg bg-muted p-1">
+      <div className="grid grid-cols-4 p-3 text-muted-foreground text-sm">
+        <div>Name</div>
+        <div>Status</div>
+        <div>Created</div>
+        <div>Actions</div>
+      </div>
+      <div className="rounded-md border">
+        {clients.map((client) => (
+          <Link
+            className="grid grid-cols-4 items-center border-b bg-background p-3 text-sm first:rounded-t-md last:rounded-b-md last:border-b-0 hover:bg-zinc-50"
+            href={`/dashboard/clients/${client.id}`}
+            key={client.id}
+          >
+            <div className="flex items-center gap-2">
+              <Avatar size="sm" value={client.name} />
+              {client.name}
+            </div>
+            <ClientStatusBadge isActive={client.is_active} />
+            <div>{format(client.created_at, "PP")}</div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

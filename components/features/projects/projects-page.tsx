@@ -1,7 +1,7 @@
 import ProjectsKanban from "@/components/features/projects/projects-kanban";
 import { ProjectIcon } from "@/components/icons";
-import { getProjects } from "@/queries/project";
-import { getProjectStatuses } from "@/queries/project-status";
+import { getProjectStatuses } from "@/queries/project-statuses";
+import { getProjects } from "@/queries/projects";
 import { getUniqueDomain } from "@/utils/domain";
 
 export default async function ProjectsPage({

@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import InboxSidebar from "@/components/layout/workspace/inbox-sidebar";
 import InboxSidebarSkeleton from "@/components/layout/workspace/inbox-sidebar-skeleton";
+
+export const metadata: Metadata = {
+  title: "Novulse • Inbox",
+};
 
 export default function InboxLayout({
   children,

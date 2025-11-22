@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Avatar from "@/components/common/avatar";
 import ClientStatusBadge from "@/components/common/client-status-badge";
 import ClientNavbarNavigation from "@/components/layout/workspace/client-navbar-navigation";
-import { getClient } from "@/queries/client";
+import { getClient } from "@/queries/clients";
 import { getUniqueDomain } from "@/utils/domain";
 
 export default async function ClientNavbar({

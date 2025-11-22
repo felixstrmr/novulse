@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import { createSafeActionClient } from "next-safe-action";
 import z from "zod";
-import { getWorkspaceUser } from "@/queries/workspace-user";
+import { getWorkspaceUser } from "@/queries/workspace-users";
 import { getUniqueDomain } from "@/utils/domain";
 
 export const actionClient = createSafeActionClient({

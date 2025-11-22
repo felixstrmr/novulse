@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { NovulseIcon } from "@/components/icons";
 import DashboardSidebarNavigation from "@/components/layout/workspace/dashboard-sidebar-navigation";
-import { getWorkspaceUser } from "@/queries/workspace-user";
+import { getWorkspaceUser } from "@/queries/workspace-users";
 import { getUniqueDomain } from "@/utils/domain";
 
 export default async function DashbaordSidebar({

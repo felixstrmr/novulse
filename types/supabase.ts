@@ -4,521 +4,623 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
 export type Database = {
   graphql_public: {
     Tables: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
       graphql: {
         Args: {
-          extensions?: Json;
-          operationName?: string;
-          query?: string;
-          variables?: Json;
-        };
-        Returns: Json;
-      };
-    };
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
+      client_files: {
+        Row: {
+          client: string
+          created_at: string
+          file: string
+          id: string
+          workspace: string
+        }
+        Insert: {
+          client: string
+          created_at?: string
+          file: string
+          id?: string
+          workspace: string
+        }
+        Update: {
+          client?: string
+          created_at?: string
+          file?: string
+          id?: string
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "client_files_client_fkey"
+            columns: ["client"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_files_file_fkey"
+            columns: ["file"]
+            isOneToOne: false
+            referencedRelation: "files"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "client_files_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       client_users: {
         Row: {
-          client: string;
-          created_at: string;
-          id: string;
-          user: string;
-          workspace: string;
-        };
+          client: string
+          created_at: string
+          id: string
+          user: string
+          workspace: string
+        }
         Insert: {
-          client: string;
-          created_at?: string;
-          id?: string;
-          user: string;
-          workspace: string;
-        };
+          client: string
+          created_at?: string
+          id?: string
+          user: string
+          workspace: string
+        }
         Update: {
-          client?: string;
-          created_at?: string;
-          id?: string;
-          user?: string;
-          workspace?: string;
-        };
+          client?: string
+          created_at?: string
+          id?: string
+          user?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "client_users_client_fkey";
-            columns: ["client"];
-            isOneToOne: false;
-            referencedRelation: "clients";
-            referencedColumns: ["id"];
+            foreignKeyName: "client_users_client_fkey"
+            columns: ["client"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "client_users_user_fkey";
-            columns: ["user"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "client_users_user_fkey"
+            columns: ["user"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "client_users_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "client_users_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       clients: {
         Row: {
-          created_at: string;
-          created_by: string | null;
-          id: string;
-          is_active: boolean;
-          name: string;
-          slug: string;
-          workspace: string;
-        };
+          created_at: string
+          created_by: string | null
+          id: string
+          is_active: boolean
+          name: string
+          slug: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          created_by?: string | null;
-          id?: string;
-          is_active?: boolean;
-          name: string;
-          slug: string;
-          workspace: string;
-        };
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          slug: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          created_by?: string | null;
-          id?: string;
-          is_active?: boolean;
-          name?: string;
-          slug?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          slug?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "clients_created_by_fkey";
-            columns: ["created_by"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "clients_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "clients_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "clients_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
+      file_folders: {
+        Row: {
+          client: string | null
+          created_at: string
+          id: string
+          name: string
+          project: string | null
+          task: string | null
+          workspace: string
+        }
+        Insert: {
+          client?: string | null
+          created_at?: string
+          id?: string
+          name: string
+          project?: string | null
+          task?: string | null
+          workspace: string
+        }
+        Update: {
+          client?: string | null
+          created_at?: string
+          id?: string
+          name?: string
+          project?: string | null
+          task?: string | null
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "file_folders_client_fkey"
+            columns: ["client"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "file_folders_project_fkey"
+            columns: ["project"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "file_folders_task_fkey"
+            columns: ["task"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "file_folders_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       files: {
         Row: {
-          created_at: string;
-          id: string;
-          name: string;
-          path: string[];
-          size: number;
-          type: string;
-          workspace: string;
-        };
+          created_at: string
+          id: string
+          name: string
+          path: string[]
+          size: number
+          type: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          name: string;
-          path: string[];
-          size: number;
-          type: string;
-          workspace: string;
-        };
+          created_at?: string
+          id?: string
+          name: string
+          path: string[]
+          size: number
+          type: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          name?: string;
-          path?: string[];
-          size?: number;
-          type?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          id?: string
+          name?: string
+          path?: string[]
+          size?: number
+          type?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "files_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "files_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       project_statuses: {
         Row: {
-          color: string;
-          created_at: string;
-          icon: string;
-          id: string;
-          is_default: boolean;
-          name: string;
-          order: number;
-          workspace: string;
-        };
+          color: string
+          created_at: string
+          icon: string
+          id: string
+          is_default: boolean
+          name: string
+          order: number
+          workspace: string
+        }
         Insert: {
-          color: string;
-          created_at?: string;
-          icon: string;
-          id?: string;
-          is_default?: boolean;
-          name: string;
-          order: number;
-          workspace: string;
-        };
+          color: string
+          created_at?: string
+          icon: string
+          id?: string
+          is_default?: boolean
+          name: string
+          order: number
+          workspace: string
+        }
         Update: {
-          color?: string;
-          created_at?: string;
-          icon?: string;
-          id?: string;
-          is_default?: boolean;
-          name?: string;
-          order?: number;
-          workspace?: string;
-        };
+          color?: string
+          created_at?: string
+          icon?: string
+          id?: string
+          is_default?: boolean
+          name?: string
+          order?: number
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "project_statuses_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "project_statuses_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       projects: {
         Row: {
-          client: string;
-          created_at: string;
-          created_by: string | null;
-          description: string | null;
-          end_date: string | null;
-          id: string;
-          name: string;
-          start_date: string | null;
-          status: string;
-          workspace: string;
-        };
+          client: string
+          created_at: string
+          created_by: string | null
+          description: string | null
+          end_date: string | null
+          id: string
+          name: string
+          start_date: string | null
+          status: string
+          workspace: string
+        }
         Insert: {
-          client: string;
-          created_at?: string;
-          created_by?: string | null;
-          description?: string | null;
-          end_date?: string | null;
-          id?: string;
-          name: string;
-          start_date?: string | null;
-          status: string;
-          workspace: string;
-        };
+          client: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name: string
+          start_date?: string | null
+          status: string
+          workspace: string
+        }
         Update: {
-          client?: string;
-          created_at?: string;
-          created_by?: string | null;
-          description?: string | null;
-          end_date?: string | null;
-          id?: string;
-          name?: string;
-          start_date?: string | null;
-          status?: string;
-          workspace?: string;
-        };
+          client?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_date?: string | null
+          id?: string
+          name?: string
+          start_date?: string | null
+          status?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "projects_client_fkey";
-            columns: ["client"];
-            isOneToOne: false;
-            referencedRelation: "clients";
-            referencedColumns: ["id"];
+            foreignKeyName: "projects_client_fkey"
+            columns: ["client"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "projects_created_by_fkey";
-            columns: ["created_by"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "projects_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "projects_status_fkey";
-            columns: ["status"];
-            isOneToOne: false;
-            referencedRelation: "project_statuses";
-            referencedColumns: ["id"];
+            foreignKeyName: "projects_status_fkey"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "project_statuses"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "projects_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "projects_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       task_statuses: {
         Row: {
-          color: string;
-          created_at: string;
-          icon: string;
-          id: string;
-          is_default: boolean;
-          name: string;
-          order: number;
-          workspace: string;
-        };
+          color: string
+          created_at: string
+          icon: string
+          id: string
+          is_default: boolean
+          name: string
+          order: number
+          workspace: string
+        }
         Insert: {
-          color: string;
-          created_at?: string;
-          icon: string;
-          id?: string;
-          is_default?: boolean;
-          name: string;
-          order: number;
-          workspace: string;
-        };
+          color: string
+          created_at?: string
+          icon: string
+          id?: string
+          is_default?: boolean
+          name: string
+          order: number
+          workspace: string
+        }
         Update: {
-          color?: string;
-          created_at?: string;
-          icon?: string;
-          id?: string;
-          is_default?: boolean;
-          name?: string;
-          order?: number;
-          workspace?: string;
-        };
+          color?: string
+          created_at?: string
+          icon?: string
+          id?: string
+          is_default?: boolean
+          name?: string
+          order?: number
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "task_statuses_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "task_statuses_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       tasks: {
         Row: {
-          created_at: string;
-          created_by: string | null;
-          description: string | null;
-          id: string;
-          name: string;
-          project: string;
-          status: string;
-          workspace: string;
-        };
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          name: string
+          project: string
+          status: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          created_by?: string | null;
-          description?: string | null;
-          id?: string;
-          name: string;
-          project: string;
-          status: string;
-          workspace: string;
-        };
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name: string
+          project: string
+          status: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          created_by?: string | null;
-          description?: string | null;
-          id?: string;
-          name?: string;
-          project?: string;
-          status?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          name?: string
+          project?: string
+          status?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "tasks_client_fkey";
-            columns: ["project"];
-            isOneToOne: false;
-            referencedRelation: "clients";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_client_fkey"
+            columns: ["project"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "tasks_created_by_fkey";
-            columns: ["created_by"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "tasks_project_fkey";
-            columns: ["project"];
-            isOneToOne: false;
-            referencedRelation: "projects";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_project_fkey"
+            columns: ["project"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "tasks_status_fkey";
-            columns: ["status"];
-            isOneToOne: false;
-            referencedRelation: "project_statuses";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_status_fkey"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "project_statuses"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "tasks_status_fkey1";
-            columns: ["status"];
-            isOneToOne: false;
-            referencedRelation: "task_statuses";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_status_fkey1"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "task_statuses"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "tasks_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "tasks_workspace_fkey1";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "tasks_workspace_fkey1"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       users: {
         Row: {
-          created_at: string;
-          email: string;
-          id: string;
-        };
+          created_at: string
+          email: string
+          id: string
+        }
         Insert: {
-          created_at?: string;
-          email: string;
-          id: string;
-        };
+          created_at?: string
+          email: string
+          id: string
+        }
         Update: {
-          created_at?: string;
-          email?: string;
-          id?: string;
-        };
-        Relationships: [];
-      };
+          created_at?: string
+          email?: string
+          id?: string
+        }
+        Relationships: []
+      }
       workspace_users: {
         Row: {
-          created_at: string;
-          id: string;
-          role: Database["public"]["Enums"]["workspace_user_roles"];
-          user: string;
-          workspace: string;
-        };
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["workspace_user_roles"]
+          user: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          role: Database["public"]["Enums"]["workspace_user_roles"];
-          user: string;
-          workspace: string;
-        };
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["workspace_user_roles"]
+          user: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          role?: Database["public"]["Enums"]["workspace_user_roles"];
-          user?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["workspace_user_roles"]
+          user?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "workspace_users_user_fkey";
-            columns: ["user"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "workspace_users_user_fkey"
+            columns: ["user"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "workspace_users_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "workspace_users_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       workspaces: {
         Row: {
-          created_at: string;
-          domain: string;
-          id: string;
-          name: string;
-          settings: Json;
-        };
+          created_at: string
+          domain: string
+          id: string
+          name: string
+          settings: Json
+        }
         Insert: {
-          created_at?: string;
-          domain: string;
-          id?: string;
-          name: string;
-          settings?: Json;
-        };
+          created_at?: string
+          domain: string
+          id?: string
+          name: string
+          settings?: Json
+        }
         Update: {
-          created_at?: string;
-          domain?: string;
-          id?: string;
-          name?: string;
-          settings?: Json;
-        };
-        Relationships: [];
-      };
-    };
+          created_at?: string
+          domain?: string
+          id?: string
+          name?: string
+          settings?: Json
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
       is_workspace_user: {
-        Args: { user_id: string; workspace_id: string };
-        Returns: boolean;
-      };
-    };
+        Args: { user_id: string; workspace_id: string }
+        Returns: boolean
+      }
+    }
     Enums: {
-      workspace_user_roles: "owner" | "manager" | "designer" | "client";
-    };
+      workspace_user_roles: "owner" | "manager" | "designer" | "client"
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
-};
+      [_ in never]: never
+    }
+  }
+}
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<
-  keyof Database,
-  "public"
->];
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
       DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R;
+      Row: infer R
     }
     ? R
     : never
@@ -526,95 +628,95 @@ export type Tables<
         DefaultSchema["Views"])
     ? (DefaultSchema["Tables"] &
         DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R;
+        Row: infer R
       }
       ? R
       : never
-    : never;
+    : never
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I;
+      Insert: infer I
     }
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I;
+        Insert: infer I
       }
       ? I
       : never
-    : never;
+    : never
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U;
+        Update: infer U
       }
       ? U
       : never
-    : never;
+    : never
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
 > = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never;
+    : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never;
+    : never
 
 export const Constants = {
   graphql_public: {
@@ -625,4 +727,5 @@ export const Constants = {
       workspace_user_roles: ["owner", "manager", "designer", "client"],
     },
   },
-} as const;
+} as const
+
