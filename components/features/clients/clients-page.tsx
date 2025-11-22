@@ -1,7 +1,9 @@
+import AddClientDialog from "@/components/dialogs/add-client-dialog";
 import ClientsPageHeader from "@/components/features/clients/clients-page-header";
 import { ClientsTable } from "@/components/features/clients/clients-table";
 import { ClientsTableColumns } from "@/components/features/clients/clients-table-columns";
 import { ClientIcon } from "@/components/icons";
+import { Input } from "@/components/ui/input";
 import { getClients } from "@/queries/client";
 import { getUniqueDomain } from "@/utils/domain";
 
@@ -25,9 +27,15 @@ export default async function ClientsPage({
           </h1>
         </div>
       </div>
-      <div className="flex w-full flex-col gap-3 p-3">
+      <div className="flex w-full flex-col gap-6 p-3">
         <ClientsPageHeader clients={clients} />
-        <ClientsTable columns={ClientsTableColumns} data={clients} />
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Input className="min-w-64 max-w-64" placeholder="Search..." />
+            <AddClientDialog />
+          </div>
+          <ClientsTable columns={ClientsTableColumns} data={clients} />
+        </div>
       </div>
     </div>
   );

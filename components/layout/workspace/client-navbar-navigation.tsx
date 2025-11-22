@@ -22,6 +22,11 @@ export default function ClientNavbarNavigation({
       href: `/dashboard/clients/${clientId}/users`,
       isActive: pathname === `/dashboard/clients/${clientId}/users`,
     },
+    {
+      name: "Files",
+      href: `/dashboard/clients/${clientId}/files`,
+      isActive: pathname === `/dashboard/clients/${clientId}/files`,
+    },
   ];
 
   return (

@@ -24,7 +24,8 @@ export default function RootProvider(props: { children: React.ReactNode }) {
             warning: <TriangleAlertIcon className="size-4 text-yellow-500" />,
             close: <XIcon className="size-4 text-zinc-500" />,
           }}
-        />      </ThemeProvider>
+        />{" "}
+      </ThemeProvider>
     </NuqsAdapter>
   );
 }

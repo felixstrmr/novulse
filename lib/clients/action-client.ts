@@ -31,7 +31,8 @@ export const authActionClient = actionClient.use(async ({ next }) => {
   return next({
     ctx: {
       domain: workspaceUser.workspace.domain,
-      user: workspaceUser.user,
+      workspaceId: workspaceUser.workspace.id,
+      userId: workspaceUser.user,
     },
   });
 });

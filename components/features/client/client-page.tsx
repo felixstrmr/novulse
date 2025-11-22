@@ -8,5 +8,5 @@ export default async function ClientPage({
   const { domain, clientId } = await params;
   const uniqueDomain = getUniqueDomain(domain);
 
-  return <div className="flex size-full rounded-xl bg-background"></div>;
+  return <div className="flex size-full rounded-xl bg-background" />;
 }
