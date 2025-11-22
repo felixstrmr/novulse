@@ -14,7 +14,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
-import { useState } from "react";
+import { useId, useState } from "react";
 import { toast } from "sonner";
 import { upsertProjectStatusesAction } from "@/actions/upsert-project-statuses-action";
 import ProjectStatusesItem from "@/components/features/settings-statuses/project-statuses-item";
@@ -86,19 +86,19 @@ export default function ProjectStatusesEditor({
     }
   };
 
-  const handleUpdate = (id: string, name: string) => {
+  const handleUpdate = (itemId: string, name: string) => {
     setStatuses((items) => {
       const updated = items.map((item) =>
-        item.id === id ? { ...item, name } : item
+        item.id === itemId ? { ...item, name } : item
       );
       setHasChanges(true);
       return updated;
     });
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = (itemId: string) => {
     setStatuses((items) => {
-      const filtered = items.filter((item) => item.id !== id);
+      const filtered = items.filter((item) => item.id !== itemId);
       const reordered = filtered.map((item, index) => ({
         ...item,
         order: index,
@@ -136,6 +136,8 @@ export default function ProjectStatusesEditor({
     });
   };
 
+  const id = useId();
+
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col rounded-lg bg-muted p-0.5">
@@ -162,7 +164,7 @@ export default function ProjectStatusesEditor({
             )}
           </div>
         </div>
-        <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
+        <DndContext id={id} onDragEnd={handleDragEnd} sensors={sensors}>
           <SortableContext
             items={statuses.map((s) => s.id)}
             strategy={verticalListSortingStrategy}
