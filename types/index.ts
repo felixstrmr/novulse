@@ -25,3 +25,9 @@ export type Project = Tables<"projects"> & {
     domain: string;
   };
 };
+
+export type TaskStatus = Tables<"task_statuses"> & {
+  workspace: {
+    domain: string;
+  };
+};

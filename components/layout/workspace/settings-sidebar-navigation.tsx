@@ -28,6 +28,12 @@ export default function SettingsSidebarNavigation({
       icon: SettingsIcon,
       isActive: pathname.startsWith("/dashboard/settings/workspace"),
     },
+    {
+      name: "Statuses",
+      href: "/dashboard/settings/statuses",
+      icon: SettingsIcon,
+      isActive: pathname.startsWith("/dashboard/settings/statuses"),
+    },
   ];
 
   return (

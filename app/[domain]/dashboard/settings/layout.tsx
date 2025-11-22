@@ -19,7 +19,9 @@ export default function SettingsLayout({
       <Suspense fallback={<SettingsSidebarSkeleton />}>
         <SettingsSidebar params={params} />
       </Suspense>
-      <div className="flex size-full rounded-xl bg-background">{children}</div>
+      <div className="flex size-full rounded-xl bg-background">
+        <div className="mx-auto w-full max-w-5xl py-12">{children}</div>
+      </div>
     </div>
   );
 }
