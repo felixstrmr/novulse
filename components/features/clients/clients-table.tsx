@@ -54,13 +54,13 @@ export function ClientsTable<TData, TValue>({
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
               <TableRow
-                className="bg-background hover:bg-background"
+                className="border-none bg-background hover:bg-background"
                 data-state={row.getIsSelected() && "selected"}
                 key={row.id}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell
-                    className="first:rounded-l-md last:rounded-r-md"
+                    className="first:rounded-tl-md last:rounded-tr-md"
                     key={cell.id}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
