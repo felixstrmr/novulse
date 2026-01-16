@@ -6,13 +6,14 @@
     "dev": "next dev -p 80",
     "build": "next build",
     "start": "next start -p 80",
-    "supabase:types": "supabase gen types typescript --local > types/supabase.ts"
+    "supabase:types": "supabase gen types typescript --project-id ldegyzenmfottqsxjife > types/supabase.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.1.0",
     "@hookform/resolvers": "^5.2.2",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.90.1",
+    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "envin": "^1.1.13",

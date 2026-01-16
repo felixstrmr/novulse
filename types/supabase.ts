@@ -7,50 +7,218 @@ export type Json =
   | Json[]
 
 export type Database = {
-  graphql_public: {
-    Tables: {
-      [_ in never]: never
-    }
-    Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      graphql: {
-        Args: {
-          extensions?: Json
-          operationName?: string
-          query?: string
-          variables?: Json
-        }
-        Returns: Json
-      }
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
+  // Allows to automatically instantiate createClient with right options
+  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
+  __InternalSupabase: {
+    PostgrestVersion: "14.1"
   }
   public: {
     Tables: {
-      assets: {
+      asset_categories: {
         Row: {
           created_at: string
           id: string
+          name: string
           workspace: string
         }
         Insert: {
           created_at?: string
           id?: string
+          name: string
           workspace: string
         }
         Update: {
           created_at?: string
           id?: string
+          name?: string
           workspace?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "asset_types_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      asset_manufacturers: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          workspace: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          workspace: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "asset_manufacturers_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      asset_models: {
+        Row: {
+          created_at: string
+          id: string
+          manufacturer: string
+          name: string
+          workspace: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          manufacturer: string
+          name: string
+          workspace: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          manufacturer?: string
+          name?: string
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "asset_models_manufacturer_fkey"
+            columns: ["manufacturer"]
+            isOneToOne: false
+            referencedRelation: "asset_manufacturers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "asset_models_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      asset_statuses: {
+        Row: {
+          color: string
+          created_at: string
+          id: string
+          name: string
+          workspace: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          id?: string
+          name: string
+          workspace: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          id?: string
+          name?: string
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "asset_statuses_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      assets: {
+        Row: {
+          assigned_to: string | null
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          manufacturer: string | null
+          model: string | null
+          name: string
+          status: string
+          type: Database["public"]["Enums"]["asset_types"]
+          workspace: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          manufacturer?: string | null
+          model?: string | null
+          name: string
+          status: string
+          type: Database["public"]["Enums"]["asset_types"]
+          workspace: string
+        }
+        Update: {
+          assigned_to?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          manufacturer?: string | null
+          model?: string | null
+          name?: string
+          status?: string
+          type?: Database["public"]["Enums"]["asset_types"]
+          workspace?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assets_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assets_category_fkey"
+            columns: ["category"]
+            isOneToOne: false
+            referencedRelation: "asset_categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assets_manufacturer_fkey"
+            columns: ["manufacturer"]
+            isOneToOne: false
+            referencedRelation: "asset_manufacturers"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assets_model_fkey"
+            columns: ["model"]
+            isOneToOne: false
+            referencedRelation: "asset_models"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "assets_status_fkey"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "asset_statuses"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "assets_workspace_fkey"
             columns: ["workspace"]
@@ -174,6 +342,17 @@ export type Database = {
       }
     }
     Enums: {
+      asset_types:
+        | "hardware"
+        | "software"
+        | "license"
+        | "consumable"
+        | "component"
+        | "accessory"
+        | "virtual"
+        | "cloud_service"
+        | "network_device"
+        | "mobile_device"
       workspace_user_roles: "owner" | "administrator" | "agent" | "customer"
     }
     CompositeTypes: {
@@ -300,13 +479,21 @@ export type CompositeTypes<
     : never
 
 export const Constants = {
-  graphql_public: {
-    Enums: {},
-  },
   public: {
     Enums: {
+      asset_types: [
+        "hardware",
+        "software",
+        "license",
+        "consumable",
+        "component",
+        "accessory",
+        "virtual",
+        "cloud_service",
+        "network_device",
+        "mobile_device",
+      ],
       workspace_user_roles: ["owner", "administrator", "agent", "customer"],
     },
   },
 } as const
-
