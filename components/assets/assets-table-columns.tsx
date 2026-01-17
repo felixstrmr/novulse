@@ -48,9 +48,19 @@ export const columns: ColumnDef<Asset>[] = [
   {
     accessorKey: "manufacturer.name",
     header: "Manufacturer",
+    cell: ({ row }) => {
+      const asset = row.original;
+
+      return asset.manufacturer?.name ?? "-";
+    },
   },
   {
     accessorKey: "model.name",
     header: "Model",
+    cell: ({ row }) => {
+      const asset = row.original;
+
+      return asset.model?.name ?? "-";
+    },
   },
 ];

@@ -13,6 +13,7 @@ export default async function Asset({
 }) {
   const { domain, assetId } = await params;
   const subdomain = getSubdomain(domain);
+
   const asset = await getAsset(subdomain, assetId);
 
   if (!asset) {
@@ -43,8 +44,13 @@ export default async function Asset({
         <div className="col-span-3 rounded-lg bg-zinc-900 p-3">
           <h2>Overview</h2>
         </div>
-        <div className="col-span-1 rounded-lg bg-zinc-900 p-3">
-          <h2>Quick Actions</h2>
+        <div className="col-span-1 flex flex-col gap-3">
+          <div className="rounded-lg bg-zinc-900 p-3">
+            <h2>Quick Actions</h2>
+          </div>
+          <div className="rounded-lg bg-zinc-900 p-3">
+            <h2>Related Assets</h2>
+          </div>
         </div>
       </div>
     </div>
