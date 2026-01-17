@@ -3,6 +3,7 @@ export * from "./dashboard-icon";
 export * from "./logout-icon";
 export * from "./novulse-icon";
 export * from "./portal-icon";
+export * from "./profile-settings-icon";
 export * from "./settings-icon";
 export * from "./ticket-icon";
 export * from "./user-icon";

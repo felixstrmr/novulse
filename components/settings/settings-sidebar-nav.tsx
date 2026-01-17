@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { SettingsIcon, WorkspaceIcon } from "@/components/icons";
+import {
+  ProfileSettingsIcon,
+  UserIcon,
+  WorkspaceIcon,
+} from "@/components/icons";
 import { cn } from "@/utils/ui";
 
 export default function SettingsSidebarNav() {
@@ -10,9 +14,9 @@ export default function SettingsSidebarNav() {
 
   const itemsPersonal = [
     {
-      name: "General",
+      name: "Profile",
       href: "/agent/settings",
-      icon: SettingsIcon,
+      icon: ProfileSettingsIcon,
       isActive: pathname === "/agent/settings",
     },
   ];
@@ -23,6 +27,12 @@ export default function SettingsSidebarNav() {
       href: "/agent/settings/workspace",
       icon: WorkspaceIcon,
       isActive: pathname === "/agent/settings/workspace",
+    },
+    {
+      name: "Users",
+      href: "/agent/settings/users",
+      icon: UserIcon,
+      isActive: pathname === "/agent/settings/users",
     },
   ];
 

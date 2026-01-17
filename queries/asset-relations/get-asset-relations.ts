@@ -13,8 +13,8 @@ export async function getAssetRelations(domain: string, assetId: string) {
     .select(
       `*,
         workspace!inner(domain),
-        parent_asset(id, name),
-        child_asset(id, name),
+        parent_asset:assets!asset_relations_parent_asset_fkey(id, name),
+        child_asset:assets!asset_relations_child_asset_fkey(id, name),
         type(id, name)
       `
     )
