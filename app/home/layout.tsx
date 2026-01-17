@@ -8,14 +8,12 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="h-screen w-screen">
-      <div className="flex size-full flex-col">
-        <Suspense fallback={<HomeTopbarSkeleton />}>
-          <HomeTopbar />
-        </Suspense>
+    <div className="flex size-full flex-col">
+      <Suspense fallback={<HomeTopbarSkeleton />}>
+        <HomeTopbar />
+      </Suspense>
 
-        {children}
-      </div>
-    </main>
+      {children}
+    </div>
   );
 }

@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={geist.variable}>
-        <RootProvider>{children}</RootProvider>
+        <main className="h-screen w-screen">
+          <RootProvider>{children}</RootProvider>
+        </main>
       </body>
     </html>
   );

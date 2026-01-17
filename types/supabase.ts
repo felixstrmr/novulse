@@ -4,388 +4,388 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
 export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "14.1";
-  };
+    PostgrestVersion: "14.1"
+  }
   public: {
     Tables: {
       asset_categories: {
         Row: {
-          created_at: string;
-          id: string;
-          name: string;
-          type: Database["public"]["Enums"]["asset_types"];
-          workspace: string;
-        };
+          created_at: string
+          id: string
+          name: string
+          type: Database["public"]["Enums"]["asset_types"]
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          name: string;
-          type: Database["public"]["Enums"]["asset_types"];
-          workspace: string;
-        };
+          created_at?: string
+          id?: string
+          name: string
+          type: Database["public"]["Enums"]["asset_types"]
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          name?: string;
-          type?: Database["public"]["Enums"]["asset_types"];
-          workspace?: string;
-        };
+          created_at?: string
+          id?: string
+          name?: string
+          type?: Database["public"]["Enums"]["asset_types"]
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "asset_types_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "asset_types_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       asset_locations: {
         Row: {
-          created_at: string;
-          id: string;
-          name: string;
-          workspace: string;
-        };
+          created_at: string
+          id: string
+          name: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          name: string;
-          workspace: string;
-        };
+          created_at?: string
+          id?: string
+          name: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          name?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          id?: string
+          name?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "asset_locations_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "asset_locations_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       asset_manufacturers: {
         Row: {
-          created_at: string;
-          id: string;
-          name: string;
-          workspace: string;
-        };
+          created_at: string
+          id: string
+          name: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          name: string;
-          workspace: string;
-        };
+          created_at?: string
+          id?: string
+          name: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          name?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          id?: string
+          name?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "asset_manufacturers_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "asset_manufacturers_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       asset_models: {
         Row: {
-          created_at: string;
-          id: string;
-          manufacturer: string;
-          name: string;
-          workspace: string;
-        };
+          created_at: string
+          id: string
+          manufacturer: string
+          name: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          id?: string;
-          manufacturer: string;
-          name: string;
-          workspace: string;
-        };
+          created_at?: string
+          id?: string
+          manufacturer: string
+          name: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          id?: string;
-          manufacturer?: string;
-          name?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          id?: string
+          manufacturer?: string
+          name?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "asset_models_manufacturer_fkey";
-            columns: ["manufacturer"];
-            isOneToOne: false;
-            referencedRelation: "asset_manufacturers";
-            referencedColumns: ["id"];
+            foreignKeyName: "asset_models_manufacturer_fkey"
+            columns: ["manufacturer"]
+            isOneToOne: false
+            referencedRelation: "asset_manufacturers"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "asset_models_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "asset_models_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       asset_statuses: {
         Row: {
-          color: string;
-          created_at: string;
-          id: string;
-          name: string;
-          workspace: string;
-        };
+          color: string
+          created_at: string
+          id: string
+          name: string
+          workspace: string
+        }
         Insert: {
-          color?: string;
-          created_at?: string;
-          id?: string;
-          name: string;
-          workspace: string;
-        };
+          color?: string
+          created_at?: string
+          id?: string
+          name: string
+          workspace: string
+        }
         Update: {
-          color?: string;
-          created_at?: string;
-          id?: string;
-          name?: string;
-          workspace?: string;
-        };
+          color?: string
+          created_at?: string
+          id?: string
+          name?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "asset_statuses_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "asset_statuses_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       assets: {
         Row: {
-          assigned_to: string | null;
-          category: string;
-          created_at: string;
-          description: string | null;
-          id: string;
-          location: string | null;
-          manufacturer: string | null;
-          model: string | null;
-          name: string;
-          status: string;
-          type: Database["public"]["Enums"]["asset_types"];
-          updated_at: string | null;
-          workspace: string;
-        };
+          assigned_to: string | null
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          location: string | null
+          manufacturer: string | null
+          model: string | null
+          name: string
+          status: string
+          type: Database["public"]["Enums"]["asset_types"]
+          updated_at: string | null
+          workspace: string
+        }
         Insert: {
-          assigned_to?: string | null;
-          category: string;
-          created_at?: string;
-          description?: string | null;
-          id?: string;
-          location?: string | null;
-          manufacturer?: string | null;
-          model?: string | null;
-          name: string;
-          status: string;
-          type: Database["public"]["Enums"]["asset_types"];
-          updated_at?: string | null;
-          workspace: string;
-        };
+          assigned_to?: string | null
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          manufacturer?: string | null
+          model?: string | null
+          name: string
+          status: string
+          type: Database["public"]["Enums"]["asset_types"]
+          updated_at?: string | null
+          workspace: string
+        }
         Update: {
-          assigned_to?: string | null;
-          category?: string;
-          created_at?: string;
-          description?: string | null;
-          id?: string;
-          location?: string | null;
-          manufacturer?: string | null;
-          model?: string | null;
-          name?: string;
-          status?: string;
-          type?: Database["public"]["Enums"]["asset_types"];
-          updated_at?: string | null;
-          workspace?: string;
-        };
+          assigned_to?: string | null
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          manufacturer?: string | null
+          model?: string | null
+          name?: string
+          status?: string
+          type?: Database["public"]["Enums"]["asset_types"]
+          updated_at?: string | null
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "assets_assigned_to_fkey";
-            columns: ["assigned_to"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_assigned_to_fkey"
+            columns: ["assigned_to"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assets_category_fkey";
-            columns: ["category"];
-            isOneToOne: false;
-            referencedRelation: "asset_categories";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_category_fkey"
+            columns: ["category"]
+            isOneToOne: false
+            referencedRelation: "asset_categories"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assets_location_fkey";
-            columns: ["location"];
-            isOneToOne: false;
-            referencedRelation: "asset_locations";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_location_fkey"
+            columns: ["location"]
+            isOneToOne: false
+            referencedRelation: "asset_locations"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assets_manufacturer_fkey";
-            columns: ["manufacturer"];
-            isOneToOne: false;
-            referencedRelation: "asset_manufacturers";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_manufacturer_fkey"
+            columns: ["manufacturer"]
+            isOneToOne: false
+            referencedRelation: "asset_manufacturers"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assets_model_fkey";
-            columns: ["model"];
-            isOneToOne: false;
-            referencedRelation: "asset_models";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_model_fkey"
+            columns: ["model"]
+            isOneToOne: false
+            referencedRelation: "asset_models"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assets_status_fkey";
-            columns: ["status"];
-            isOneToOne: false;
-            referencedRelation: "asset_statuses";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_status_fkey"
+            columns: ["status"]
+            isOneToOne: false
+            referencedRelation: "asset_statuses"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "assets_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "assets_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       users: {
         Row: {
-          avatar: string | null;
-          created_at: string;
-          email: string;
-          first_name: string | null;
-          id: string;
-          last_name: string | null;
-        };
+          avatar: string | null
+          created_at: string
+          email: string
+          first_name: string | null
+          id: string
+          last_name: string | null
+        }
         Insert: {
-          avatar?: string | null;
-          created_at?: string;
-          email: string;
-          first_name?: string | null;
-          id?: string;
-          last_name?: string | null;
-        };
+          avatar?: string | null
+          created_at?: string
+          email: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+        }
         Update: {
-          avatar?: string | null;
-          created_at?: string;
-          email?: string;
-          first_name?: string | null;
-          id?: string;
-          last_name?: string | null;
-        };
-        Relationships: [];
-      };
+          avatar?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string | null
+          id?: string
+          last_name?: string | null
+        }
+        Relationships: []
+      }
       workspace_users: {
         Row: {
-          created_at: string;
-          role: Database["public"]["Enums"]["workspace_user_roles"];
-          user: string;
-          workspace: string;
-        };
+          created_at: string
+          role: Database["public"]["Enums"]["workspace_user_roles"]
+          user: string
+          workspace: string
+        }
         Insert: {
-          created_at?: string;
-          role?: Database["public"]["Enums"]["workspace_user_roles"];
-          user: string;
-          workspace: string;
-        };
+          created_at?: string
+          role?: Database["public"]["Enums"]["workspace_user_roles"]
+          user: string
+          workspace: string
+        }
         Update: {
-          created_at?: string;
-          role?: Database["public"]["Enums"]["workspace_user_roles"];
-          user?: string;
-          workspace?: string;
-        };
+          created_at?: string
+          role?: Database["public"]["Enums"]["workspace_user_roles"]
+          user?: string
+          workspace?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "workspace_users_user_fkey";
-            columns: ["user"];
-            isOneToOne: false;
-            referencedRelation: "users";
-            referencedColumns: ["id"];
+            foreignKeyName: "workspace_users_user_fkey"
+            columns: ["user"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "workspace_users_workspace_fkey";
-            columns: ["workspace"];
-            isOneToOne: false;
-            referencedRelation: "workspaces";
-            referencedColumns: ["id"];
+            foreignKeyName: "workspace_users_workspace_fkey"
+            columns: ["workspace"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
           },
-        ];
-      };
+        ]
+      }
       workspaces: {
         Row: {
-          created_at: string;
-          domain: string;
-          id: string;
-          name: string;
-          settings: Json;
-        };
+          created_at: string
+          domain: string
+          id: string
+          name: string
+          settings: Json
+        }
         Insert: {
-          created_at?: string;
-          domain: string;
-          id?: string;
-          name: string;
-          settings?: Json;
-        };
+          created_at?: string
+          domain: string
+          id?: string
+          name: string
+          settings?: Json
+        }
         Update: {
-          created_at?: string;
-          domain?: string;
-          id?: string;
-          name?: string;
-          settings?: Json;
-        };
-        Relationships: [];
-      };
-    };
+          created_at?: string
+          domain?: string
+          id?: string
+          name?: string
+          settings?: Json
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
       is_workspace_administrator: {
-        Args: { user_id?: string; workspace_id: string };
-        Returns: boolean;
-      };
+        Args: { user_id?: string; workspace_id: string }
+        Returns: boolean
+      }
       is_workspace_agent: {
-        Args: { user_id?: string; workspace_id: string };
-        Returns: boolean;
-      };
+        Args: { user_id?: string; workspace_id: string }
+        Returns: boolean
+      }
       is_workspace_customer: {
-        Args: { user_id?: string; workspace_id: string };
-        Returns: boolean;
-      };
+        Args: { user_id?: string; workspace_id: string }
+        Returns: boolean
+      }
       is_workspace_owner: {
-        Args: { user_id?: string; workspace_id: string };
-        Returns: boolean;
-      };
+        Args: { user_id?: string; workspace_id: string }
+        Returns: boolean
+      }
       is_workspace_user: {
-        Args: { user_id?: string; workspace_id: string };
-        Returns: boolean;
-      };
-    };
+        Args: { user_id?: string; workspace_id: string }
+        Returns: boolean
+      }
+    }
     Enums: {
       asset_types:
         | "hardware"
@@ -397,38 +397,35 @@ export type Database = {
         | "virtual"
         | "cloud_service"
         | "network_device"
-        | "mobile_device";
-      workspace_user_roles: "owner" | "administrator" | "agent" | "customer";
-    };
+        | "mobile_device"
+      workspace_user_roles: "owner" | "administrator" | "agent" | "customer"
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
-};
+      [_ in never]: never
+    }
+  }
+}
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<
-  keyof Database,
-  "public"
->];
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
       DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R;
+      Row: infer R
     }
     ? R
     : never
@@ -436,95 +433,95 @@ export type Tables<
         DefaultSchema["Views"])
     ? (DefaultSchema["Tables"] &
         DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-        Row: infer R;
+        Row: infer R
       }
       ? R
       : never
-    : never;
+    : never
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I;
+      Insert: infer I
     }
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Insert: infer I;
+        Insert: infer I
       }
       ? I
       : never
-    : never;
+    : never
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
     : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
     ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-        Update: infer U;
+        Update: infer U
       }
       ? U
       : never
-    : never;
+    : never
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
 > = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
     ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-    : never;
+    : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
     : never = never,
 > = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
     ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-    : never;
+    : never
 
 export const Constants = {
   public: {
@@ -544,4 +541,4 @@ export const Constants = {
       workspace_user_roles: ["owner", "administrator", "agent", "customer"],
     },
   },
-} as const;
+} as const
