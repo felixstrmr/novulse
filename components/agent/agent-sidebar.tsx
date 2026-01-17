@@ -23,7 +23,7 @@ export default async function AgentSidebar({
   }
 
   return (
-    <aside className="flex min-w-64 max-w-64 flex-col gap-3 border-r bg-zinc-900/50 p-3">
+    <aside className="flex min-w-64 max-w-64 flex-col gap-3 border-r bg-[#0E0E0F] p-3">
       <AgentSidebarDropdown workspace={workspace} />
       <AgentSidebarNav />
     </aside>

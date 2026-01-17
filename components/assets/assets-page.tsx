@@ -1,4 +1,3 @@
-import { PlusIcon } from "lucide-react";
 import Link from "next/link";
 import { AssetsTable } from "@/components/assets/assets-table";
 import { columns } from "@/components/assets/assets-table-columns";
@@ -23,8 +22,7 @@ export default async function Assets({
           className={buttonVariants({ variant: "default" })}
           href="/agent/assets/create"
         >
-          <PlusIcon />
-          Create
+          Create asset
         </Link>
       </div>
       <AssetsTable columns={columns} data={assets} />

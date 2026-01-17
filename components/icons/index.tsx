@@ -6,3 +6,4 @@ export * from "./portal-icon";
 export * from "./settings-icon";
 export * from "./ticket-icon";
 export * from "./user-icon";
+export * from "./workspace-icon";
