@@ -53,7 +53,6 @@ export default function CreateAssetForm({
       name: "",
       description: "",
       category: "",
-      type: "hardware",
       manufacturer: "",
       model: "",
       status: "",
