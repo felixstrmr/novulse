@@ -1,6 +1,6 @@
 import { ArrowLeftIcon } from "lucide-react";
 import Link from "next/link";
-import SettingsSidebarNav from "@/components/settings/settings-sidebar-nav";
+import SettingsSidebarNav from "@/components/agent/settings/settings-sidebar-nav";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function SettingsSidebar() {
