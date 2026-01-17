@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import AssetCreate from "@/components/assets/asset-create-page";
+import AssetCreate from "@/components/agent/assets/asset-create-page";
 import AssetCreatePageSkeleton from "@/components/skeletons/asset-create-page-skeleton";
 
 export default function AssetCreatePage({

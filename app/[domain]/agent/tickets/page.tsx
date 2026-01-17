@@ -1,3 +1,3 @@
-export default function Page() {
+export default function TicketsPage() {
   return <div>Tickets Page</div>;
 }

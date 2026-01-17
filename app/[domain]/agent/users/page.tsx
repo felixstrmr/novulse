@@ -1,6 +1,6 @@
 import { Suspense } from "react";
+import Users from "@/components/agent/users/users-page";
 import UsersPageSkeleton from "@/components/skeletons/users-page-skeleton";
-import Users from "@/components/users/users-page";
 
 export default function UsersPage({
   params,

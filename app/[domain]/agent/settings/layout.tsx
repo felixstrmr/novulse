@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import SettingsSidebar from "@/components/settings/settings-sidebar";
+import SettingsSidebar from "@/components/agent/settings/settings-sidebar";
 import SettingsSidebarSkeleton from "@/components/skeletons/settings-sidebar-skeleton";
 
 export default function SettingsLayout({

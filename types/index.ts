@@ -4,6 +4,7 @@ import type { getAssetManufacturers } from "@/queries/asset-manufacturers/get-as
 import type { getAssetModels } from "@/queries/asset-models/get-asset-models";
 import type { getAssetRelations } from "@/queries/asset-relations/get-asset-relations";
 import type { getAssetStatuses } from "@/queries/asset-statuses/get-asset-statuses";
+import type { getWorkspaceUsers } from "@/queries/workspace-users/get-workspace-users";
 import type { Database, Json } from "@/types/supabase";
 
 export interface Workspace {
@@ -12,6 +13,10 @@ export interface Workspace {
   name: string;
   settings: Json;
 }
+
+export type WorkspaceUser = Awaited<
+  ReturnType<typeof getWorkspaceUsers>
+>[number];
 
 export interface Asset {
   assigned_to: string | null;
