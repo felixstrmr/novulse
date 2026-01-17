@@ -1,3 +1,8 @@
+import type { getAssetCategories } from "@/queries/asset-categories/get-asset-categories";
+import type { getAssetLocations } from "@/queries/asset-locations/get-asset-location";
+import type { getAssetManufacturers } from "@/queries/asset-manufacturers/get-asset-manufacturers";
+import type { getAssetModels } from "@/queries/asset-models/get-asset-models";
+import type { getAssetStatuses } from "@/queries/asset-statuses/get-asset-statuses";
 import type { Database, Json } from "@/types/supabase";
 
 export interface Workspace {
@@ -39,3 +44,19 @@ export interface Asset {
     domain: string;
   };
 }
+
+export type AssetCategory = Awaited<
+  ReturnType<typeof getAssetCategories>
+>[number];
+
+export type AssetManufacturer = Awaited<
+  ReturnType<typeof getAssetManufacturers>
+>[number];
+
+export type AssetModel = Awaited<ReturnType<typeof getAssetModels>>[number];
+
+export type AssetStatus = Awaited<ReturnType<typeof getAssetStatuses>>[number];
+
+export type AssetLocation = Awaited<
+  ReturnType<typeof getAssetLocations>
+>[number];

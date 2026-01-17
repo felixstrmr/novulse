@@ -2,6 +2,7 @@
 
 import { ChevronsUpDownIcon } from "lucide-react";
 import { useState } from "react";
+import { LogoutIcon } from "@/components/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,14 +20,16 @@ export default function AgentSidebarDropdown({
   workspace: Workspace;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const triggerId = `workspace-dropdown-${workspace.id}`;
 
   return (
     <DropdownMenu onOpenChange={setIsOpen} open={isOpen}>
       <DropdownMenuTrigger
         className={cn(
-          "flex h-8 cursor-pointer items-center gap-2 rounded-md pr-2 pl-1 hover:bg-muted",
+          "flex h-8 cursor-pointer items-center gap-2 rounded-md pr-2 pl-1 transition-colors hover:bg-muted",
           isOpen && "bg-muted"
         )}
+        id={triggerId}
       >
         <div className="flex size-6 shrink-0 items-center justify-center rounded-sm bg-blue-700 text-primary-foreground">
           <span className="text-xs">
@@ -42,7 +45,10 @@ export default function AgentSidebarDropdown({
           <DropdownMenuItem>Billing</DropdownMenuItem>
           <DropdownMenuItem>Team</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Log out</DropdownMenuItem>
+          <DropdownMenuItem variant="destructive">
+            <LogoutIcon />
+            Log out
+          </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>

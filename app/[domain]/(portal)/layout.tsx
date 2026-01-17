@@ -8,12 +8,14 @@ export default function PortalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex size-full flex-col">
-      <Suspense fallback={<PortalTopbarSkeleton />}>
-        <PortalTopbar />
-      </Suspense>
+    <main className="h-screen w-screen">
+      <div className="flex size-full flex-col">
+        <Suspense fallback={<PortalTopbarSkeleton />}>
+          <PortalTopbar />
+        </Suspense>
 
-      {children}
-    </div>
+        {children}
+      </div>
+    </main>
   );
 }

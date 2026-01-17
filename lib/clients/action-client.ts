@@ -60,7 +60,7 @@ export const authActionClient = actionClient.use(async ({ next, ctx }) => {
     ctx: {
       user,
       domain,
-      workspace,
+      workspace: workspace.id,
     },
   });
 });

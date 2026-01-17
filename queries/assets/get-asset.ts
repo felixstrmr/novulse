@@ -11,7 +11,14 @@ export async function getAsset(domain: string, assetId: string) {
   const { data } = await supabase
     .from("assets")
     .select(
-      "*, workspace!inner(domain), status(id, color, name), category(id, name), manufacturer(id, name), model(id, name)"
+      `*,
+        workspace!inner(domain),
+        status(id, color, name),
+        category(id, name),
+        manufacturer(id, name),
+        model(id, name),
+        location(id, name)
+      `
     )
     .eq("workspace.domain", domain)
     .eq("id", assetId)

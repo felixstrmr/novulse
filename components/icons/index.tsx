@@ -1,5 +1,6 @@
 export * from "./asset-icon";
 export * from "./dashboard-icon";
+export * from "./logout-icon";
 export * from "./novulse-icon";
 export * from "./portal-icon";
 export * from "./settings-icon";

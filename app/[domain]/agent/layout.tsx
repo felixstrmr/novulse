@@ -12,18 +12,20 @@ export default function AgentLayout({
   params: Promise<{ domain: string }>;
 }) {
   return (
-    <div className="flex size-full">
-      <Suspense fallback={<AgentSidebarSkeleton />}>
-        <AgentSidebar params={params} />
-      </Suspense>
-
-      <div className="flex size-full flex-col">
-        <Suspense fallback={<AgentTopbarSkeleton />}>
-          <AgentTopbar />
+    <main className="h-screen w-screen">
+      <div className="flex size-full">
+        <Suspense fallback={<AgentSidebarSkeleton />}>
+          <AgentSidebar params={params} />
         </Suspense>
 
-        {children}
+        <div className="flex size-full flex-col">
+          <Suspense fallback={<AgentTopbarSkeleton />}>
+            <AgentTopbar />
+          </Suspense>
+
+          {children}
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

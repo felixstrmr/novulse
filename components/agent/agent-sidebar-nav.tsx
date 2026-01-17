@@ -80,7 +80,7 @@ function NavItem({
   return (
     <Link
       className={cn(
-        "flex h-8 items-center gap-2 rounded-md px-2",
+        "flex h-8 items-center gap-2 rounded-md px-2 transition-colors",
         isActive
           ? "bg-blue-500/10 text-blue-500"
           : "text-muted-foreground hover:bg-muted"

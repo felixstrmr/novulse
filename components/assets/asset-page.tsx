@@ -21,7 +21,7 @@ export default async function Asset({
 
   return (
     <div className="flex size-full flex-col">
-      <div className="flex items-center gap-2 p-3">
+      <div className="flex items-center gap-2 border-b p-3">
         <Link
           className={buttonVariants({ variant: "ghost", size: "icon" })}
           href="/agent/assets"
@@ -38,6 +38,14 @@ export default async function Asset({
           />
           {asset.status.name}
         </Badge>
+      </div>
+      <div className="grid grid-cols-4 gap-3 p-3">
+        <div className="col-span-3 rounded-lg bg-zinc-900 p-3">
+          <h2>Overview</h2>
+        </div>
+        <div className="col-span-1 rounded-lg bg-zinc-900 p-3">
+          <h2>Quick Actions</h2>
+        </div>
       </div>
     </div>
   );
