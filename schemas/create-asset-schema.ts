@@ -1,11 +1,9 @@
 import z from "zod";
-import { Constants } from "@/types/supabase";
 
 export const createAssetSchema = z.object({
   name: z.string().min(1, "Name is required"),
   description: z.string().optional(),
   category: z.uuid().min(1, "Category is required"),
-  type: z.enum(Constants.public.Enums.asset_types),
   manufacturer: z.uuid().min(1, "Manufacturer is required"),
   model: z.uuid().min(1, "Model is required"),
   status: z.uuid().min(1, "Status is required"),

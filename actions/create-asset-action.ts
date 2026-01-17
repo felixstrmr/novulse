@@ -12,7 +12,6 @@ export const createAssetAction = authActionClient
       name,
       description,
       category,
-      type,
       manufacturer,
       model,
       status,
@@ -21,7 +20,19 @@ export const createAssetAction = authActionClient
     } = parsedInput;
     const { supabase, domain, workspace } = ctx;
 
+    const { data } = await supabase
+      .from("asset_categories")
+      .select("*")
+      .eq("id", category)
+      .single()
+      .throwOnError();
+
+    if (!data) {
+      throw new Error("Asset category not found");
+    }
+
     const id = crypto.randomUUID();
+    const type = data.type;
 
     await supabase
       .from("assets")
