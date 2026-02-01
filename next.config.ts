@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
+import "@/lib/env";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  devIndicators: false,
   reactCompiler: true,
+  cacheComponents: true,
 };
 
 export default nextConfig;
