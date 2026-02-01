@@ -14,7 +14,7 @@ export default async function Templates({
         <h1 className="font-semibold text-2xl tracking-tight">Templates</h1>
         <Link
           className={buttonVariants({ variant: "default" })}
-          href={`/${organizationId}/templates/create`}
+          href={`/${organizationId}/templates/editor`}
         >
           Add Template
         </Link>

@@ -14,7 +14,7 @@ export default async function OrganizationSidebar({
         <div className="flex size-8 items-center justify-center rounded-md bg-muted">
           <NovulseIcon className="size-4" />
         </div>
-        <h1 className="font-semibold text-2xl tracking-tight">NovulsePDF</h1>
+        <h1 className="font-semibold text-xl tracking-tight">NovulsePDF</h1>
       </div>
       <OrganizationSidebarNavigation organizationId={organizationId} />
     </aside>
